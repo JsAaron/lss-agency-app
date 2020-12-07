@@ -1,0 +1,95 @@
+// deep 主色
+// light 浅色
+
+/* 流光金 */
+$streamer-gold-deep: #dfa245;
+$streamer-gold-light: #f0c482;
+
+/* 浪漫粉 */
+$romantic-powder-deep: #ff547b;
+$romantic-powder-light: #ff96ae;
+
+/* 品味红 */
+$taste-red-deep: #ff4544;
+$taste-red-light: #ff8888;
+
+/* 优雅紫 */
+$elegant-purple-deep: #7783ea;
+$elegant-purple-light: #a1aaf6;
+
+/* 清醒绿 */
+$fresh-green-deep: #63be72;
+$fresh-green-light: #89db96;
+
+/* 商务蓝 */
+$business-blue-deep: #4a90e2;
+$business-blue-light: #82b4ef;
+
+// 主题色
+
+/* 流光金 */
+.streamer-gold-gift-color {
+  color: $streamer-gold-deep;
+}
+.streamer-gold-gift-background {
+  background-color: $streamer-gold-deep;
+}
+.streamer-gold-gift-border {
+  border:2px solid $streamer-gold-deep;
+}
+
+/* 浪漫粉 */
+.romantic-powder-gift-color {
+  color: $romantic-powder-deep;
+}
+.romantic-powder-gift-background {
+  background-color: $romantic-powder-deep;
+}
+.romantic-powder-gift-border {
+  border:2px solid $romantic-powder-deep;
+}
+
+/* 品味红 */
+.taste-red-gift-color {
+  color: $taste-red-deep;
+}
+.taste-red-gift-background {
+  background-color: $taste-red-deep;
+}
+.taste-red-gift-border {
+  border:2px solid $taste-red-deep;
+}
+
+/* 优雅紫 */
+.elegant-purple-gift-color {
+  color: $elegant-purple-deep;
+}
+.elegant-purple-gift-background {
+  background-color: $elegant-purple-deep;
+}
+.elegant-purple-gift-border {
+   border:2px solid $elegant-purple-deep;
+}
+
+/* 清醒绿 */
+.fresh-green-gift-color {
+  color: $fresh-green-deep;
+}
+.fresh-green-gift-background {
+  background-color: $fresh-green-deep;
+}
+.fresh-green-gift-border {
+  border:2px solid  $fresh-green-deep;
+}
+
+/* 商务蓝 */
+.business-blue-gift-color {
+  color: $business-blue-deep;
+}
+.business-blue-gift-background {
+  background-color: $business-blue-deep;
+}
+.business-blue-gift-border {
+  border:2px solid  $business-blue-deep;
+}
+
