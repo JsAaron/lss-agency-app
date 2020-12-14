@@ -331,6 +331,7 @@ const apiUrl = {
 		order_list: 'plugin/mch/api/order/index',
 		order_detail: 'plugin/mch/api/order/detail',
 		manage_index: 'plugin/mch/api/mch/manage-index',
+		add_qr: 'plugin/mch/api/mch/add-qr',
 		qr_code: 'plugin/mch/api/mch/qr-code',
 		qr_code_parameter: 'api/default/qr-code-parameter',
 		statistic: 'plugin/mch/api/mch/statistic',
@@ -364,8 +365,11 @@ const apiUrl = {
 		postage: 'plugin/mch/api/goods/rules',
 		service: 'plugin/mch/api/goods/services',
 		mch_cat: 'plugin/mch/api/goods/mch-cats',
-		shop_consume: "plugin/mch/api/mch/shop-index",
-		settlement: "plugin/mch/api/mch/settlement"
+		shop_consume: 'plugin/mch/api/mch/shop-index',
+		flow: 'plugin/mch/api/mch/devices-index',
+		flow_code: 'plugin/mch/api/mch/code-order',
+		settlement: 'plugin/mch/api/mch/settlement',
+		aggregate_code: 'plugin/mch/api/mch/aggregate-code',
 	},
 	app_admin: {
 		index: 'api/admin/data-statistics/all_data',

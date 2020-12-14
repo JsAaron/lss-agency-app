@@ -1,21 +1,17 @@
 <template>
 	<view class="app-layout" :class="haveBackground ? 'app-layout-background' : ''">
 		<app-prompt-box v-if="promptBox.show" :text="promptBox.text" @click="confirmNegative"></app-prompt-box>
-		<app-user-login v-if="isGuest"></app-user-login>
-		<app-user-phone v-else></app-user-phone>
-		<app-payment></app-payment>
 		<app-report-error :content="reportAndError.content" v-if="reportAndError.boolean"></app-report-error>
-		<app-coupon-modal></app-coupon-modal>
 		<view><slot></slot></view>
 		<app-loading
 			:type="loadingType"
-			:text="loadingText" 
+			:text="loadingText"
 			:color="loadingColor"
 			v-if="loadingIsShow"
 			:backgroundImage="loadingBackgroundImage"
 		></app-loading>
 		<template v-if="tabbarbool">
-			<view
+			<view 
 				:style="{ height: BotHeight + 'rpx' }"
 				class="nav-margin"
 				:class="haveBackground ? 'app-layout-background' : ''"
@@ -24,20 +20,16 @@
 				<view slot="empty-area"><app-tab-bar :page-count="page_count"></app-tab-bar></view>
 			</app-iphone-x>
 		</template>
-	</view>   
+	</view>
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex';
 import appTabBar from '../../../components/basic-component/app-tab-bar/app-tab-bar.vue';
-import AppPayment from './app-payment/app-payment';
 import tabBar from '../../../core/tabbar.js';
-import AppUserLogin from './app-user-login/app-user-login';
 import appLoading from '../app-loading/app-loading.vue';
 import appRepeatError from '../app-report-error/app-report-error.vue';
 import appPromptBox from '../app-prompt-box/app-prompt-box.vue';
-import appCouponModal from './app-coupon-modal/app-coupon-modal.vue';
 import appIphoneX from '../../../components/basic-component/app-iphone-x/app-iphone-x.vue';
-import appUserPhone from './app-user-phone/app-user-phone';
 
 export default {
 	name: 'app-layout',
@@ -51,14 +43,10 @@ export default {
 	},
 	components: {
 		'app-tab-bar': appTabBar,
-		'app-payment': AppPayment,
-		'app-user-login': AppUserLogin,
 		'app-loading': appLoading,
 		'app-report-error': appRepeatError,
 		'app-prompt-box': appPromptBox,
-		'app-coupon-modal': appCouponModal,
-		'app-iphone-x': appIphoneX,
-		'app-user-phone': appUserPhone
+		'app-iphone-x': appIphoneX
 	},
 
 	props: {

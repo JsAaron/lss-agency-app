@@ -1,7 +1,8 @@
 import user from '../../core/user.js';
 
 const state = {
-  accessToken: 'FOTYhhQqpGfWzlOmQOFysTeWGJBwMTbH',
+	//FOTYhhQqpGfWzlOmQOFysTeWGJBwMTbH
+  accessToken: '',
   info: null,
   showLoginModal: false,
   tempParentId: 0,

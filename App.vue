@@ -50,10 +50,10 @@ export default {
 <style lang="scss">
 /*每个页面公共css */
 @import "./uni.scss";
-@import './static/css/flex.scss';
-@import './static/css/themeColor.scss';
-@import './static/css/text.scss';
-@import './static/css/image.scss';
-@import './static/css/parse.scss';
-@import './static/css/gift.scss';
+@import './common/css/flex.scss';
+@import './common/css/themeColor.scss';
+@import './common/css/text.scss';
+@import './common/css/image.scss';
+@import './common/css/parse.scss';
+@import './common/css/gift.scss';
 </style>

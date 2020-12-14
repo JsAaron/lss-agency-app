@@ -40,7 +40,7 @@ Vue.component('app-image', appImage);
 Vue.use({
   install(Vue, options) {
     // 小程序端版本号
-    Vue.prototype.$appVersion = '1.0';
+    Vue.prototype.$appVersion = '1.31';
     // 数据池
     Vue.prototype.$store = store;
     // 平台

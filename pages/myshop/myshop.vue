@@ -50,8 +50,58 @@
 						<view>订单管理</view>
 					</app-form-id>
 				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navData">
+						<image src="/static/image/myshop/myshop-data.png"></image>
+						<view>数据统计</view>
+					</app-form-id>
+				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navAccount">
+						<image src="/static/image/myshop/myshop-zc.png"></image>
+						<view>资产</view>
+					</app-form-id>
+				</view>
+				<!-- #ifndef MP-BAIDU -->
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navQrcode">
+						<image src="/static/image/myshop/myshop-storecode.png"></image>
+						<view>店铺二维码</view>
+					</app-form-id>
+				</view>
+				<!--#endif -->
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navStorepay">
+						<image src="/static/image/myshop/myshop-storepay.png"></image>
+						<view>店铺消费</view>
+					</app-form-id>
+				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navAdvert">
+						<image src="/static/image/myshop/myshop-ad.png"></image>
+						<view>设备广告</view>
+					</app-form-id>
+				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navMergecode">
+						<image src="/static/image/myshop/myshop-mergecode.png"></image>
+						<view>店铺支付码</view>
+					</app-form-id>
+				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navSettlement">
+						<image src="/static/image/myshop/myshop-settlement.png"></image>
+						<view>结算管理</view>
+					</app-form-id>
+				</view>
+				<view class="box-grow-0 menu-item">
+					<app-form-id @click="navScan">
+						<image src="/static/image/myshop/myshop-scan.png"></image>
+						<view>扫一扫</view>
+					</app-form-id>
+				</view>
 			</view>
-			<view @click="showPcUrl" class="myshop-pc">PC端管理网址</view>
+			<!-- <view @click="showPcUrl" class="myshop-pc">PC端管理网址</view> -->
 			<view
 				:style="{ bottom: iphone ? `${iphoneHeight}rpx` : '0rpx' }"
 				class="myshop-msg main-center cross-center"
@@ -109,14 +159,12 @@ export default {
 	onShow() {
 		const self = this;
 		const mch_data = uni.getStorageSync('MCH2019');
-		console.log(22222, mch_data);
 		if (!mch_data) {
 			this.navLogin();
 			return;
 		}
 		self.mch_id = mch_data.mch.id;
 		self.$showLoading({ title: '登陆中' });
-
 		self
 			.$request({
 				url: self.$api.mch.manage_index,
@@ -146,7 +194,7 @@ export default {
 				}
 			})
 			.catch(err => {
-				console.log(err);
+				console.log('错误', err);
 				this.navLogin();
 			});
 	},
@@ -156,52 +204,52 @@ export default {
 		},
 		navConfig: function() {
 			uni.navigateTo({
-				url: `/pages/config/config?mch_id=` + this.mch_id
+				url: `/pages/admin/config/config?mch_id=` + this.mch_id
 			});
 		},
 		navGoods: function() {
 			uni.navigateTo({
-				url: `/pages/goods/goods?mch_id=` + this.mch_id
+				url: `/pages/admin/goods/goods?mch_id=` + this.mch_id
 			});
 		},
 		navOrder: function() {
 			uni.navigateTo({
-				url: `/pages/order/order?mch_id=` + this.mch_id
+				url: `/pages/admin/order/order?mch_id=` + this.mch_id
 			});
 		},
 		navData: function() {
 			uni.navigateTo({
-				url: `/pages/count/count?mch_id=` + this.mch_id
+				url: `/pages/admin/count/count?mch_id=` + this.mch_id
 			});
 		},
 		navAccount: function() {
 			uni.navigateTo({
-				url: `/pages/account/account?mch_id=` + this.mch_id
+				url: `/pages/admin/account/account?mch_id=` + this.mch_id
 			});
 		},
 		navQrcode: function() {
 			uni.navigateTo({
-				url: `/pages/qrcode/qrcode?mch_id=` + this.mch_id
+				url: `/pages/admin/qrcode/qrcode?mch_id=` + this.mch_id
 			});
 		},
 		navStorepay: function() {
 			uni.navigateTo({
-				url: `/pages/shop-consume/shop-consume?mch_id=` + this.mch_id
+				url: `/pages/admin/shop-consume/shop-consume?mch_id=` + this.mch_id
 			});
 		},
 		navAdvert: function() {
 			uni.navigateTo({
-				url: `/pages/advert/advert?mch_id=` + this.mch_id
+				url: `/pages/admin/advert/advert?mch_id=` + this.mch_id
 			});
 		},
 		navMergecode: function() {
 			uni.navigateTo({
-				url: `/pages/qrcodep/qrcodep?mch_id=` + this.mch_id
+				url: `/pages/admin/qrcodep/qrcodep?mch_id=` + this.mch_id
 			});
 		},
 		navSettlement: function() {
 			uni.navigateTo({
-				url: `/pages/settlement/settlement?mch_id=` + this.mch_id
+				url: `/pages/admin/settlement/settlement?mch_id=` + this.mch_id
 			});
 		},
 		navScan: function() {
@@ -279,7 +327,7 @@ export default {
 		},
 		navPassword() {
 			uni.navigateTo({
-				url: `/pages/password/password?mch_id=` + this.mch_id
+				url: `/pages/admin/password/password?mch_id=` + this.mch_id
 			});
 		}
 	}

@@ -1,6 +1,5 @@
 <template>
 	<view class="dir-left-nowrap cross-center">
-		<!-- #ifdef MP-WEIXIN || MP-BAIDU -->
 		<picker
 			class="box-grow-1 area-picker-left"
 			mode="multiSelector"
@@ -13,7 +12,6 @@
 			<text v-if="place !== `请选择`" class="address-name-color">{{ place }}</text>
 			<text v-else class="address-place-name-color">{{ place }}</text>
 		</picker>
-		<!-- #endif -->
 
 		<!-- #ifdef MP-ALIPAY || MP-TOUTIAO -->
 		<view class="area-picker-left" @click="showAreaPicker">
@@ -144,7 +142,8 @@ export default {
 
 		before(cb) {
 			const self = this;
-			const district = uni.getStorageSync('_DISTRICT');
+			let district = uni.getStorageSync('_DISTRICT');
+			// district = false;
 			if (district) {
 				cb(district);
 			} else {
@@ -160,12 +159,15 @@ export default {
 		},
 
 		init: function(list) {
-
 			const null_status = this.ids.length === 3 && this.ids[0] != 0;
 			const ids = null_status ? this.ids : [2, 3, 4];
-
+			// console.log('ids',ids)
 			const multiIndex = this.getIndex(list, ids);
-					console.log('init0')
+			// console.log('multiIndex',multiIndex)
+			if (multiIndex.length != 3) {
+				return;
+			}
+
 			const multiArray = [list, list[multiIndex[0]].list, list[multiIndex[0]].list[multiIndex[1]].list];
 			let place =
 				multiArray[0][multiIndex[0]].name +
@@ -173,7 +175,7 @@ export default {
 				multiArray[1][multiIndex[1]].name +
 				'，' +
 				multiArray[2][multiIndex[2]].name;
-			console.log('init1')
+
 			/////初始化
 			let eve = [multiArray[0][multiIndex[0]], multiArray[1][multiIndex[1]], multiArray[2][multiIndex[2]]];
 			////
@@ -184,26 +186,35 @@ export default {
 				multiIndex,
 				null_status ? place : '请选择'
 			];
-			console.log(123,this.multiArray)
 		},
 
-		getIndex: function(list, data) {
+		getIndex: function(list, ids) {
 			let arr = [];
-			list.map((item, index) => {
-				if (data[0] == item.id) arr.push(index);
-			});
-			console.log(11)
-			list[arr[0]].list.map((item, index) => {
-				if (data[1] == item.id) arr.push(index);
-			});
-			console.log(222,arr)
-			if(arr[1]){
-				list[arr[0]].list[arr[1]].list.map((item, index) => {
-					if (data[2] == item.id) arr.push(index);
+			if (ids[0].toString().length == 6) {
+				list.map((item, index) => {
+					if (ids[0] == item.province_id) arr.push(index);
 				});
+				list[arr[0]].list.map((item, index) => {
+					if (ids[1] == item.city_id) arr.push(index);
+				});
+				list[arr[0]].list[arr[1]].list.map((item, index) => {
+					if (ids[2] == item.county_id) arr.push(index);
+				});
+				return arr;
+			} else {
+				list.map((item, index) => {
+					if (ids[0] == item.id) arr.push(index);
+				});
+				list[arr[0]].list.map((item, index) => {
+					if (ids[1] == item.id) {
+						arr.push(index);
+					}
+				});
+				list[arr[0]].list[arr[1]].list.map((item, index) => {
+					if (ids[2] == item.id) arr.push(index);
+				});
+				return arr;
 			}
-						console.log(333)
-			return arr;
 		},
 
 		bindMultiPickerChange: function(e) {

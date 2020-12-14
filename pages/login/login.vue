@@ -1,12 +1,12 @@
 <template>
 	<app-layout>
 		<view class="login-box">
-			<view class="login-null dir-left-nowrap cross-center">
+			<!-- 			<view class="login-null dir-left-nowrap cross-center">
 				<view>还没有商家账户？</view>
 				<view @click="navApply"><view class="main-center cross-center apply-btn">立即申请</view></view>
-			</view>
+			</view> -->
 			<view class="login-bg">
-				<image :src="appImg.mch_login_bg"></image>
+				<image src="/static/image/logo.png"></image>
 				<view></view>
 			</view>
 			<view class="account main-center cross-center">
@@ -20,7 +20,7 @@
 					<view class="box-grow-0 cross-center">密码</view>
 					<input
 						focus
-						placeholder="请输入密码"
+						placeholder="请输入密码(6-14位)"
 						placeholder-style="color:#bbbbbb"
 						type="password"
 						v-model="form.password"
@@ -30,34 +30,15 @@
 			<view @click="login">
 				<view class="main-center cross-center login-dl"><view class="main-center cross-center">登录</view></view>
 			</view>
-			<view class="dir-top-nowrap main-center cross-center">
+			<!-- 			<view class="dir-top-nowrap main-center cross-center">
 				<view class="spacing main-center cross-center">
 					<view class="line"></view>
 					<view>或</view>
 					<view class="line"></view>
 				</view>
-
-				<!-- #ifdef MP-WEIXIN -->
-				<image :src="appImg.wechat" @click="wxLogin" class="platform-pic"></image>
-				<view class="platform-name">微信授权登录</view>
-				<!-- #endif -->
-
-				<!-- #ifdef MP-ALIPAY -->
-				<image :src="appImg.alipay" @click="wxLogin" class="platform-pic"></image>
-				<view class="platform-name">支付宝授权登录</view>
-				<!-- #endif -->
-
-				<!-- #ifdef MP-BAIDU -->
-				<image :src="appImg.baidu" @click="wxLogin" class="platform-pic"></image>
-				<view class="platform-name">百度授权登录</view>
-				<!-- #endif -->
-
-				<!-- #ifdef MP-TOUTIAO -->
-				<image :src="appImg.byte_dance" @click="wxLogin" class="platform-pic"></image>
-				<view class="platform-name">授权登录</view>
-				<!-- #endif -->
-			</view>
+			</view> -->
 		</view>
+		<image class="footer" src="/static/image/footer.png"></image>
 	</app-layout>
 </template>
 
@@ -67,16 +48,16 @@ import { mapState } from 'vuex';
 export default {
 	name: 'login',
 
-	computed: {
-		...mapState({
-			appImg: state => state.mallConfig.plugin.mch.app_image
-		})
-	},
+	// computed: {
+	// 	...mapState({
+	// 		appImg: state => state.mallConfig.plugin.mch.app_image
+	// 	})
+	// },
 	data() {
 		return {
 			form: {
-				username: '15899996666',
-				password: '123456'
+				username: '',
+				password: ''
 			}
 		};
 	},
@@ -86,15 +67,15 @@ export default {
 
 	methods: {
 		navApply() {
-			uni.navigateTo({ url: `/pages/apply/apply` });
+			uni.navigateTo({ url: `/pages/admin/apply/apply` });
 		},
 		login: function() {
 			const self = this;
 			self.$showLoading({ title: '登陆中' });
-
 			self
 				.$request({
-					url: 'https://lff.facess.net/web/index.php?_mall_id=1&r=plugin/mch/api/mch/login',
+					// url: 'https://lff.facess.net/web/index.php?_mall_id=1&r=plugin/mch/api/mch/login',
+					url: 'https://lff.facess.net/web/index.php?_mall_id=1&r=plugin/mch/api/mch/app-login',
 					method: 'POST',
 					data: {
 						username: self.form.username,
@@ -104,49 +85,19 @@ export default {
 				.then(info => {
 					self.$hideLoading();
 					if (info.code === 0) {
+						uni.setStorageSync('_USER_ACCESS_TOKEN', info.data['x-token']);
 						self.loginSuccess(info.data);
 					} else {
 						uni.showToast({ icon: 'none', title: info.msg });
 					}
 				})
 				.catch(err => {
-					console.log(123, err);
-					self.$hideLoading();
-				});
-		},
-
-		wxLogin: function() {
-			const self = this;
-			self.$showLoading({ title: '登陆中' });
-
-			self
-				.$request({
-					url: self.$api.mch.mch_status,
-					data: {
-						is_review_status: 1
-					}
-				})
-				.then(info => {
-					self.$hideLoading();
-					if (info.code === 0) {
-						let mch = info.data.mch;
-						if (mch && mch.review_status == 1) {
-							self.loginSuccess(info.data);
-							return;
-						}
-						uni.showToast({ icon: 'none', title: '账户不存在或账户异常' });
-					} else {
-						uni.showToast({ icon: 'none', title: info.msg });
-					}
-				})
-				.catch(() => {
 					self.$hideLoading();
 				});
 		},
 
 		loginSuccess(data) {
 			uni.showToast({ title: '登陆成功' });
-			console.log(1111,data)
 			//缓存
 			uni.setStorageSync('MCH2019', data);
 			//跳转
@@ -159,16 +110,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	
 .login-box {
 	background: #ffffff;
 	min-height: 100vh;
+	padding-top: 100rpx;
 }
 
 .login-null {
 	background: #feeeee;
 	height: #{80rpx};
 	width: 100%;
-	color: #ff4544;
+	color: rgb(7, 128, 218);
 	font-size: #{28rpx};
 
 	> view {
@@ -183,7 +136,7 @@ export default {
 .password {
 	margin-top: #{64rpx - 24rpx};
 	margin-bottom: #{72rpx};
-}
+} 
 
 .apply-btn {
 	height: #{44rpx};
@@ -198,12 +151,14 @@ export default {
 
 .login-bg {
 	position: relative;
-	height: #{300rpx};
-	width: 100%;
+	height: #{155rpx};
+	width: 155rpx;
+	margin: 0 auto;
+	margin-bottom: 180rpx;
 }
 
 .login-bg view {
-	position: absolute;
+	position: absolute; 
 	left: #{200rpx};
 	bottom: #{0rpx};
 	width: #{0rpx};
@@ -251,10 +206,11 @@ export default {
 .login-dl view {
 	width: #{560rpx};
 	height: 100%;
-	background: #ff4544;
+	background: rgb(8, 128, 218);
 	border-radius: #{40rpx};
 	color: #fff;
 	font-size: #{32rpx};
+	margin-top: 100rpx;
 }
 
 .spacing {
@@ -280,5 +236,12 @@ export default {
 .platform-name {
 	color: #bbbbbb;
 	font-size: #{28rpx};
+}
+
+.footer{
+	height: 133rpx;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
 }
 </style>

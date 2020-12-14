@@ -13,8 +13,6 @@ const storageKey = '_USER_ACCESS_TOKEN';
 let userInfo = null;
 
 export default {
-	getUserInfoResolve: null,
-	getUserInfoReject: null,
 	getAccessToken(options) {
 		options = options || {};
 		if (typeof options.cacheOnly === 'undefined') {
@@ -28,51 +26,7 @@ export default {
 			if (options.cacheOnly) {
 				return resolve(accessToken);
 			}
-			const pages = getCurrentPages();
-			const currentPage = pages[pages.length - 1];
-			currentPage.$vm.$store.commit('user/showLoginModal', true);
-			this.getUserInfoResolve = (userInfoResult) => {
-				console.log('getUserInfoResolve->', userInfoResult);
-				uni.showLoading({
-					mask: true,
-					title: '正在登录',
-				});
-				uni.login({
-					scopes: 'auth_base',
-					success(loginResult) {
-						const data = {
-							encryptedData: userInfoResult.detail.encryptedData,
-							iv: userInfoResult.detail.iv,
-							rawData: userInfoResult.detail.rawData,
-							signature: userInfoResult.detail.signature,
-							code: loginResult.code,
-						};
-						console.log('请求',data,api.passport.login)
-						request({
-							url: api.passport.login,
-							method: 'post',
-							data: data,
-						}).then(response => {
-							console.log('登录成功', response)
-							uni.hideLoading();
-							if (response.code === 0) {
-								event.trigger($const.EVENT_USER_LOGIN);
-								setStorageSync(storageKey, response.data.access_token);
-								return resolve(response.data.access_token);
-							} else {
-								return reject(response.msg);
-							}
-						}).catch(e => {
-							console.log('登录失败', e)
-							uni.hideLoading();
-							reject(e);
-						});
-					},
-				});
-			};
-			this.getUserInfoReject = (e) => {
-				reject(e);
-			};
+			reject()
 		});
 	},
 	getInfo(options) {

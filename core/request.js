@@ -31,7 +31,7 @@ const request = async function(args) {
 
 	//多商户Token
 	let obj = {};
-	args.url.replace(/([^=&]+)=([^&]*)/g, function(m, key, value) {
+	args.url && args.url.replace(/([^=&]+)=([^&]*)/g, function(m, key, value) {
 		obj[decodeURIComponent(key)] = decodeURIComponent(value);
 	});
 	if (objectValues(apiUrl.mch).indexOf(obj.r) !== -1) {

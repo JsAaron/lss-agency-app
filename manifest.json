@@ -1,17 +1,58 @@
 {
-    "name" : "脸刷刷商家APP",
+    "name" : "脸刷刷商家版",
     "appid" : "__UNI__85BF89B",
-    "description" : "脸刷刷商家APP",
-    "versionName" : "1.0.0",
-    "versionCode" : "100",
+    "description" : "脸刷刷商家版",
+    "versionName" : "1.31",
+    "versionCode" : 131,
     "transformPx" : false,
     "uniStatistics" : {
         "enable" : false
     },
     "app-plus" : {
         "distribute" : {
-            "sdkConfigs" : {
-                "ad" : {}
+            /* android打包配置 */
+            "android" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ],
+                "abiFilters" : [ "armeabi-v7a" ],
+                "targetSdkVersion" : 26,
+                "Runtime" : {
+                    "description" : "运行环境"
+                },
+                "Push" : {
+                    "description" : "消息推送"
+                }
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "此APP需要您的同意，才能访问相册,以便于更新商品的时候获取图片或者保存收款/点餐二维码照片",
+                    "NSPhotoLibraryAddUsageDescription" : "此APP需要您的同意，才能访问相册,以便于保存收款/点餐二维码照片",
+                    "NSCameraUsageDescription" : "此APP需要您的同意，才能访问摄像头,以便于更新商品的时候获取商品的照片或者扫码核销商品",
+                    "NSAppleMusicUsageDescription" : "此APP需要您的同意，才能访问媒体资源,以便于更新商品的时候获取商品的视频"
+                }
             },
             "icons" : {
                 "android" : {
@@ -44,7 +85,19 @@
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
                 }
+            },
+            "sdkConfigs" : {
+                "ad" : {},
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "df075ee6b9c61a24e93ddb6188ebe8f5",
+                        "appkey_android" : "df075ee6b9c61a24e93ddb6188ebe8f5"
+                    }
+                }
             }
+        },
+        "modules" : {
+            "Maps" : {}
         }
     },
     "quickapp" : {},
@@ -55,11 +108,7 @@
             "es6" : true
         },
         "usingComponents" : true,
-        "permission" : {
-            "scope.userLocation" : {
-                "desc" : "请求获取您的位置信息"
-            }
-        }
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true
