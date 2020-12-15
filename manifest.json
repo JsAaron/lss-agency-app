@@ -1,9 +1,9 @@
 {
-    "name" : "脸刷刷商家版",
-    "appid" : "__UNI__85BF89B",
-    "description" : "脸刷刷商家版",
-    "versionName" : "1.31",
-    "versionCode" : 131,
+    "name" : "脸刷刷代理版",
+    "appid" : "__UNI__03C0003",
+    "description" : "脸刷刷代理版",
+    "versionName" : "1.0",
+    "versionCode" : 10,
     "transformPx" : false,
     "uniStatistics" : {
         "enable" : false
@@ -96,9 +96,7 @@
                 }
             }
         },
-        "modules" : {
-            "Maps" : {}
-        }
+        "modules" : {}
     },
     "quickapp" : {},
     "mp-weixin" : {

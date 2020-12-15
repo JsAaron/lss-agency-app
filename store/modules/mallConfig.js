@@ -82,7 +82,7 @@ const mutations = {
 				for (let i = 0; i < data[item].navs.length; i++) {
 					data[item].navs[i].id = i;
 				}
-			}
+			} 
 			state[item] = data[item];
 		}
 	},

@@ -5,7 +5,7 @@
 			<view
 				class="info"
 				:style="{
-					'background-image': 'url(' + share_setting.pic_url_home_head + ')'
+					'background-image': 'url(' + custom_setting.pic_url_home_head + ')'
 				}"
 			>
 				<view class="user-info dir-left-nowrap cross-center">
@@ -23,7 +23,7 @@
 							</view>
 						</view>
 						<view class="mtb-10">手机号：{{ indexlist.mobile }}</view>
-						<view class="t-omit agent-recom" v-if="indexlist.agentUser.name">
+						<view class="t-omit agent-recom" v-if="indexlist.agentUser && indexlist.agentUser.name">
 							推荐人：{{ indexlist.agentUser.name }}
 							<text>{{ indexlist.agentUser.mobile }}</text>
 						</view>
@@ -31,6 +31,7 @@
 					</view>
 				</view>
 			</view>
+			
 			<!-- 余额情况开始 -->
 			<view class="nav main-balance">
 				<view class="balance-top main-between cross-center">
@@ -65,6 +66,7 @@
 					</view>
 				</view>
 			</view>
+		
 			<!-- 功能菜单开始 -->
 			<view class="list dir-left-wrap">
 				<view class="list-item">
