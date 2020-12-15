@@ -1,13 +1,13 @@
 {
 	"pages": [{
+		"path": "pages/main/main",
+		"style": {
+			"navigationBarTitleText": "代理中心"
+		}
+	}, {
 		"path": "pages/index/index",
 		"style": {
 			"navigationStyle": "custom"
-		}
-	}, {
-		"path": "pages/myshop/myshop",
-		"style": {
-			"navigationBarTitleText": "商家主页"
 		}
 	}, {
 		"path": "pages/login/login",
@@ -25,155 +25,59 @@
 		"wx3ae92fa03906e0f7"
 	],
 	"subPackages": [{
-		"root": "pages/admin",
+		"root": "pages/agency",
 		"pages": [{
-				"path": "config/config",
-				"style": {
-					"navigationBarTitleText": "店铺管理"
-				}
-			},
-			{
-				"path": "goods/goods",
-				"style": {
-					"navigationBarTitleText": "商品管理"
-				}
-			},
-			{
-				"path": "add-goods/add-goods",
-				"style": {
-					"navigationBarTitleText": "添加商品"
-				}
-			},
-			{
-				"path": "goods-detail/goods-detail",
-				"style": {
-					"navigationBarTitleText": "商品图文描述"
-				}
-			},
-			{
-				"path": "order/order",
-				"style": {
-					"navigationBarTitleText": "订单管理"
-				}
-			},
-			{
-				"path": "order-detail/order-detail",
-				"style": {
-					"navigationBarTitleText": "订单详情"
-				}
-			},
-			{
-				"path": "send/send",
-				"style": {
-					"navigationBarTitleText": "发货"
-				}
-			},
-			{
-				"path": "count/count",
-				"style": {
-					"navigationBarTitleText": "数据统计"
-				}
-			},
-			{
-				"path": "account/account",
-				"style": {
-					"navigationBarTitleText": "资产"
-				}
-			},
-			{
 				"path": "cash/cash",
 				"style": {
-					"navigationBarTitleText": "提现申请"
+					"navigationBarTitleText": "代理提现"
 				}
 			},
 			{
-				"path": "cash-log/cash-log",
+				"path": "ag-cash-detail/ag-cash-detail",
 				"style": {
 					"navigationBarTitleText": "提现记录"
 				}
 			},
 			{
-				"path": "account-log/account-log",
+				"path": "promote-be/promote-be",
 				"style": {
-					"navigationBarTitleText": "交易记录"
+					"navigationBarTitleText": "推广收益"
 				}
 			},
 			{
-				"path": "settle-detail/settle-detail",
+				"path": "promote-be/details",
 				"style": {
-					"navigationBarTitleText": ""
+					"navigationBarTitleText": "推广收益详情"
+				}
+			},
+			{
+				"path": "consumer-be/consumer-be",
+				"style": {
+					"navigationBarTitleText": "商家佣金"
+				}
+			},
+			{
+				"path": "consumer-be/details",
+				"style": {
+					"navigationBarTitleText": "商家佣金详情"
+				}
+			},
+			{
+				"path": "advert-be/advert-be",
+				"style": {
+					"navigationBarTitleText": "广告收益"
+				}
+			},
+			{
+				"path": "myteam/myteam",
+				"style": {
+					"navigationBarTitleText": "我的团队"
 				}
 			},
 			{
 				"path": "qrcode/qrcode",
 				"style": {
 					"navigationBarTitleText": "我要分享"
-				}
-			},
-			{
-				"path": "shop-consume/shop-consume",
-				"style": {
-					"navigationBarTitleText": "店铺消费"
-				}
-			},
-			{
-				"path": "flow/flow",
-				"style": {
-					"navigationBarTitleText": "设备流水"
-				}
-			},
-			{
-				"path": "flow-code/flow-code",
-				"style": {
-					"navigationBarTitleText": "会员码支付订单"
-				}
-			},
-			{
-				"path": "advert/advert",
-				"style": {
-					"navigationBarTitleText": "设备广告"
-				}
-			},
-			{
-				"path": "qrcodep/qrcodep",
-				"style": {
-					"navigationBarTitleText": "店铺支付码"
-				}
-			},
-			{
-				"path": "settlement/settlement",
-				"style": {
-					"navigationBarTitleText": "结算管理"
-				}
-			},
-			{
-				"path": "password/password",
-				"style": {
-					"navigationBarTitleText": "修改密码"
-				}
-			},
-			{
-				"path": "apply/apply",
-				"style": {
-					"navigationBarTitleText": ""
-				}
-			},
-			{
-				"path": "apply_rules/apply_rules",
-				"style": {
-					"navigationBarTitleText": "协议"
-				}
-			},
-			{
-				"path": "map/index",
-				"style": {
-					"navigationBarTitleText": "地图"
-				}
-			},
-			{
-				"path": "map/search",
-				"style": {
-					"navigationBarTitleText": "搜索"
 				}
 			}
 		]

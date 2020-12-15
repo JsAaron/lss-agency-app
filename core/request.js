@@ -25,6 +25,7 @@ const request = async function(args) {
 	if ($store.state.user && $store.state.user.accessToken) {
 		header['X-Access-Token'] = $store.state.user.accessToken;
 	}
+
 	if ($store.state.user && $store.state.user.tempParentId !== 0) {
 		header['X-User-Id'] = $store.state.user.tempParentId + '';
 	}
@@ -38,7 +39,7 @@ const request = async function(args) {
 		const mch_storage = uni.getStorageSync('MCH2019');
 		header['Mch-Access-Token'] = mch_storage.token;
 	}
-	
+
 	// console.log(args,header)  
 	const [error, response] = await uni.request({
 		url: args.url,
@@ -111,7 +112,7 @@ const alertError = function(error) {
 
 const distinguishDataCode = function(response) {
 	if (response.data) {
-		let { 
+		let {
 			msg,
 			code
 		} = response.data;
