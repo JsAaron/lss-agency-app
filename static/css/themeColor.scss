@@ -1,0 +1,314 @@
+// 经典红
+$classic-red-main-color: #ff4544;
+$classic-red-secondary-color: #f39800;
+
+// 活力黄
+$vibrant-yellow-main-color: #fcc600;
+$vibrant-yellow-secondary-color: #555555;
+
+// 浪漫粉
+$romantic-powder-main-color: #ff547b;
+$romantic-powder-secondary-color: #ffe6e8;
+
+// 流光金
+$streamer-gold-main-color: #ddb766;
+$streamer-gold-secondary-color: #f0ebd8;
+
+// 优雅紫
+$elegant-purple-main-color: #7783ea;
+$elegant-purple-secondary-color: #e9ebff;
+
+// 品味红
+$taste-red-main-color: #ff4544;
+$taste-red-secondary-color: #555555;
+
+// 清醒绿
+$fresh-green-main-color: #63be72;
+$fresh-green-secondary-color: #e1f4e3;
+
+// 商务蓝
+$business-blue-main-color: #4a90e2;
+$business-blue-secondary-color: #dbe9f9;
+
+// 纯粹黑
+$pure-black-main-color: #333333;
+$pure-black-secondary-color: #dedede;
+
+// 热情红
+$passionate-red-main-color: #ff4544;
+$passionate-red-secondary-color: #ffdada;
+
+// 商城管理蓝
+$app-admin-main-color: #446dfd;
+
+.white-background {
+  background-color: #fff;
+}
+
+// 文字色
+.app-admin-color {
+  color: $app-admin-main-color
+}
+
+.classic-red-color {
+  color: $classic-red-main-color;
+}
+
+.classic-red-secondary-color {
+  color: $classic-red-secondary-color;
+}
+
+.vibrant-yellow-color {
+  color: $vibrant-yellow-main-color;
+}
+
+.vibrant-yellow-secondary-color {
+  color: $vibrant-yellow-secondary-color;
+}
+
+.romantic-powder-color {
+  color: $romantic-powder-main-color;
+}
+
+.romantic-powder-secondary-color {
+  color: $romantic-powder-secondary-color;
+}
+
+.streamer-gold-color {
+  color: $streamer-gold-main-color;
+}
+
+.streamer-gold-secondary-color {
+  color: $streamer-gold-secondary-color;
+}
+
+.elegant-purple-color {
+  color: $elegant-purple-main-color;
+}
+
+.elegant-purple-secondary-color {
+  color: $elegant-purple-secondary-color;
+}
+
+.taste-red-color {
+  color: $taste-red-main-color;
+}
+
+.taste-red-secondary-color {
+  color: $taste-red-secondary-color;
+}
+
+.fresh-green-color {
+  color: $fresh-green-main-color;
+}
+
+.fresh-green-secondary-color {
+  color: $fresh-green-secondary-color;
+}
+
+.business-blue-color {
+  color: $business-blue-main-color;
+}
+
+.business-blue-secondary-color {
+  color: $business-blue-secondary-color;
+}
+
+.pure-black-color {
+  color: $pure-black-main-color;
+}
+
+.pure-black-secondary-color {
+  color: $pure-black-secondary-color;
+}
+
+.passionate-red-color {
+  color: $passionate-red-main-color;
+}
+
+.passionate-red-secondary-color {
+  color: $passionate-red-secondary-color;
+}
+
+// 背景色
+.classic-red-background {
+  background-color: $classic-red-main-color;
+  color: #ffffff;
+}
+
+.classic-red-secondary-background {
+  background-color: $classic-red-secondary-color;
+  color: #ffffff;
+}
+
+.vibrant-yellow-background {
+  background-color: $vibrant-yellow-main-color;
+  color: #ffffff;
+
+}
+
+.vibrant-yellow-secondary-background {
+  background-color: $vibrant-yellow-secondary-color;
+  color: #ffffff;
+}
+
+.romantic-powder-background {
+  background-color: $romantic-powder-main-color;
+  color: #ffffff
+
+}
+
+.romantic-powder-secondary-background {
+  background-color: $romantic-powder-secondary-color;
+  color: $romantic-powder-main-color
+}
+
+.streamer-gold-background {
+  background-color: $streamer-gold-main-color;
+  color: #ffffff;
+
+}
+
+.streamer-gold-secondary-background {
+  background-color: $streamer-gold-secondary-color;
+  color: $streamer-gold-main-color;
+}
+
+.elegant-purple-background {
+  background-color: $elegant-purple-main-color;
+  color: #ffffff;
+
+}
+
+view .elegant-purple-secondary-background {
+  background-color: $elegant-purple-secondary-color;
+  color: $elegant-purple-main-color;
+}
+
+view .taste-red-background {
+  background-color: $taste-red-main-color;
+  color: #ffffff;
+
+}
+
+view .taste-red-secondary-background {
+  background-color: $taste-red-secondary-color;
+  color: #ffffff;
+}
+
+view .fresh-green-background {
+  background-color: $fresh-green-main-color;
+  color: #ffffff;
+
+}
+
+view .fresh-green-secondary-background {
+  background-color: $fresh-green-secondary-color;
+  color: $fresh-green-main-color;
+}
+
+view .business-blue-background {
+  background-color: $business-blue-main-color;
+  color: #ffffff;
+
+}
+
+view .business-blue-secondary-background {
+  background-color: $business-blue-secondary-color;
+  color: $business-blue-main-color;
+}
+
+view .pure-black-background {
+  background-color: $pure-black-main-color;
+  color: #ffffff;
+
+}
+
+view .pure-black-secondary-background {
+  background-color: $pure-black-secondary-color;
+  color: $pure-black-main-color;
+}
+
+view .passionate-red-background {
+  background-color: $passionate-red-main-color;
+  color: #ffffff;
+
+}
+
+view .passionate-red-secondary-background {
+  background-color: $passionate-red-secondary-color;
+  color: $passionate-red-main-color;
+}
+
+
+view .classic-red-background {
+  background-color: $classic-red-main-color;
+  color: #ffffff;
+
+}
+
+view .classic-red-secondary-background {
+  background-color: $classic-red-secondary-color;
+  color: #ffffff;
+}
+
+// 边框色
+.classic-red-border {
+  border-color: $classic-red-main-color !important;
+}
+
+.vibrant-yellow-border {
+  border-color: $vibrant-yellow-main-color !important;
+}
+
+.romantic-powder-border {
+  border-color: $romantic-powder-main-color !important;
+}
+
+.streamer-gold-border {
+  border-color: $streamer-gold-main-color !important;
+}
+
+.elegant-purple-border {
+  border-color: $elegant-purple-main-color !important;
+}
+
+.taste-red-border {
+  border-color: $taste-red-main-color !important;
+}
+
+.fresh-green-border {
+  border-color: $fresh-green-main-color !important;
+}
+
+.business-blue-border {
+  border-color: $business-blue-main-color !important;
+}
+
+.pure-black-border {
+  border-color: $pure-black-main-color !important;
+}
+
+.passionate-red-border {
+  border-color: $passionate-red-main-color !important;
+}
+
+.general-one-background {
+  background-color: $uni-general-color-one;
+}
+
+.general-tow-background {
+  background-color: $uni-general-color-two;
+}
+
+.general-three-background {
+  background-color: $uni-general-color-three;
+}
+
+.weak-one-background {
+  background-color: $uni-weak-color-one;
+}
+
+.weak-two-background {
+  background-color: $uni-weak-color-two;
+}

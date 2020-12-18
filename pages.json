@@ -79,6 +79,18 @@
 				"style": {
 					"navigationBarTitleText": "我要分享"
 				}
+			},
+			{
+				"path": "apply/apply",
+				"style": {
+					"navigationBarTitleText": ""
+				}
+			},
+			{
+				"path": "apply_rules/apply_rules",
+				"style": {
+					"navigationBarTitleText": "协议"
+				}
 			}
 		]
 	}]

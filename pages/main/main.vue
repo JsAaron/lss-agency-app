@@ -31,7 +31,7 @@
 					</view>
 				</view>
 			</view>
-			
+
 			<!-- 余额情况开始 -->
 			<view class="nav main-balance">
 				<view class="balance-top main-between cross-center">
@@ -66,7 +66,7 @@
 					</view>
 				</view>
 			</view>
-		
+
 			<!-- 功能菜单开始 -->
 			<view class="list dir-left-wrap">
 				<view class="list-item">
@@ -114,6 +114,12 @@
 						<view>我要分享</view>
 					</view>
 				</view>
+				<view class="list-item">
+					<view @click="toInto">
+						<image src="/static/image/agency/agency-jj.png"></image>
+						<view>进件</view>
+					</view>
+				</view>
 			</view>
 		</view>
 
@@ -144,7 +150,7 @@
 	</app-layout>
 </template>
 
-<script> 
+<script>
 import { mapState } from 'vuex';
 import myPop from './myPop';
 export default {
@@ -201,7 +207,7 @@ export default {
 				url: '/pages/agency/myteam/myteam'
 			});
 		},
-		choiseShareMethod() { 
+		choiseShareMethod() {
 			this.shareShow = true;
 		},
 		closeView() {
@@ -229,7 +235,9 @@ export default {
 				url: '/pages/agency/ag-cash-detail/ag-cash-detail'
 			});
 		},
-
+		toInto() {
+			uni.navigateTo({ url: `/pages/agency/apply/apply` });
+		},
 		//获取代理数据
 		getList() {
 			let that = this;

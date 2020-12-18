@@ -427,6 +427,8 @@ const apiUrl = {
 		sellerRemark: 'api/admin/order/seller-remark',
 		confirm: 'api/admin/order/confirm',
 		queue: 'api/admin/review/queue-status',
+		device_order: 'api/user/device-order',
+		device_detail: 'api/user/device-detail'
 	},
 	clerk: {
 		info: 'plugin/clerk/api/index/clerk-info',
