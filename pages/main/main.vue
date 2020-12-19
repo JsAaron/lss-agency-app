@@ -120,6 +120,18 @@
 						<view>进件</view>
 					</view>
 				</view>
+				<view class="list-item">
+					<view @click="toAccount">
+						<image src="/static/image/agency/account.png"></image>
+						<view>切换账号</view>
+					</view>
+				</view>
+				<view class="list-item">
+					<view @click="toPassword">
+						<image src="/static/image/agency/pwd.png"></image>
+						<view>修改密码</view>
+					</view>
+				</view>
 			</view>
 		</view>
 
@@ -180,6 +192,24 @@ export default {
 				var n = num.toFixed(2);
 				return n;
 			}
+		},
+		toAccount() {
+			uni.showModal({
+				title: '确定切换用户?',
+				success: res => {
+					if (res.confirm) {
+						this.$store.dispatch('user/logout');
+						uni.redirectTo({ url: `/pages/login/login` });
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
+			});
+		},
+		toPassword() {
+			uni.navigateTo({
+				url: '/pages/agency/password/password'
+			});
 		},
 		// 菜单跳转
 		toPromoteBe() {
@@ -268,7 +298,7 @@ export default {
 				.then(response => {
 					that.$hideLoading();
 					if (response.code == 0) {
-						console.log(response.data.data);
+						// console.log(response.data.data);
 						that.indexbelist = response.data.data;
 					} else {
 					}

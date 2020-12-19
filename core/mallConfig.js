@@ -4,7 +4,7 @@ import api from './appOnLaunch.js';
 let isFirstAppRun = true;
 let isGettingFromService = false;
 let mallConfig = null;
-let cacheKey = '_APP_CONFIG';
+let cacheKey = 'LSSAGENCY_APP_CONFIG';
 let resolveList = [];
 let rejectList = [];
 
@@ -66,5 +66,6 @@ export default {
 	resetConfig() {
 		mallConfig = null;
 		isGettingFromService = false;
+		uni.removeStorageSync(cacheKey);
 	}
 };

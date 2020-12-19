@@ -7,7 +7,6 @@ export default {
 		if (options && options.scene) {
 			this.$appScene = options.scene;
 		}
-		this.$store.dispatch('mallConfig/actionGetConfig');
 		let _this = this;
 		wx.getSystemInfo({
 			success: function(response) {
@@ -49,7 +48,7 @@ export default {
 
 <style lang="scss">
 /*每个页面公共css */
-@import "./uni.scss";
+@import './uni.scss';
 @import './common/css/flex.scss';
 @import './common/css/themeColor.scss';
 @import './common/css/text.scss';

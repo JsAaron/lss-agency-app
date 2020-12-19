@@ -1,18 +1,18 @@
 {
 	"pages": [{
-		"path": "pages/main/main",
-		"style": {
-			"navigationBarTitleText": "代理中心"
-		}
-	}, {
 		"path": "pages/index/index",
 		"style": {
 			"navigationStyle": "custom"
 		}
 	}, {
+		"path": "pages/main/main",
+		"style": {
+			"navigationBarTitleText": "代理中心"
+		}
+	}, {
 		"path": "pages/login/login",
 		"style": {
-			"navigationBarTitleText": "脸刷刷商家登录"
+			"navigationBarTitleText": "脸刷刷代理登录"
 		}
 	}],
 	"globalStyle": {
@@ -90,6 +90,12 @@
 				"path": "apply_rules/apply_rules",
 				"style": {
 					"navigationBarTitleText": "协议"
+				}
+			},
+			{
+				"path": "password/password",
+				"style": {
+					"navigationBarTitleText": "修改密码"
 				}
 			}
 		]

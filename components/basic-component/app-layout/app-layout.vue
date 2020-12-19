@@ -125,7 +125,6 @@ export default {
 		}
 	},
 	created() {
-		this.$store.dispatch('mallConfig/actionGetConfig');
 		this.$nextTick(() => {
 			let currentRoute = this.$platDiff.route();
 			tabBar.setNavigationBarTitle(this.bar_title, currentRoute).then(res => {

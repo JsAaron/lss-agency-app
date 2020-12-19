@@ -1,10 +1,6 @@
 <template>
 	<app-layout>
 		<view class="login-box">
-			<!-- 			<view class="login-null dir-left-nowrap cross-center">
-				<view>还没有商家账户？</view>
-				<view @click="navApply"><view class="main-center cross-center apply-btn">立即申请</view></view>
-			</view> -->
 			<view class="login-bg">
 				<image src="/static/image/logo.png"></image>
 				<view></view>
@@ -56,26 +52,19 @@ export default {
 	data() {
 		return {
 			form: {
-				username: '',
-				password: ''
+				username: '17308497777',
+				password: '12345678'
 			}
 		};
 	},
-	onLoad: function() {
-		uni.removeStorage({ key: 'MCH2019' });
-	},
 
 	methods: {
-		navApply() {
-			uni.navigateTo({ url: `/pages/admin/apply/apply` });
-		},
 		login: function() {
 			const self = this;
 			self.$showLoading({ title: '登陆中' });
 			self
 				.$request({
-					// url: 'https://lff.facess.net/web/index.php?_mall_id=1&r=plugin/mch/api/mch/login',
-					url: 'https://lff.facess.net/web/index.php?_mall_id=1&r=plugin/mch/api/mch/app-login',
+					url: 'https://api.facess.net/api/agent/app-login',
 					method: 'POST',
 					data: {
 						username: self.form.username,
@@ -83,9 +72,10 @@ export default {
 					}
 				})
 				.then(info => {
+					console.log(123, info);
 					self.$hideLoading();
 					if (info.code === 0) {
-						uni.setStorageSync('_USER_ACCESS_TOKEN', info.data['x-token']);
+						uni.setStorageSync('LSSAGENCY_USER_ACCESS_TOKEN', info.data['token']);
 						self.loginSuccess(info.data);
 					} else {
 						uni.showToast({ icon: 'none', title: info.msg });
@@ -96,13 +86,12 @@ export default {
 				});
 		},
 
-		loginSuccess(data) {
+		async loginSuccess(data) {
+			await this.$store.dispatch('mallConfig/actionGetConfig');
 			uni.showToast({ title: '登陆成功' });
-			//缓存
-			uni.setStorageSync('MCH2019', data);
 			//跳转
 			uni.redirectTo({
-				url: '/pages/myshop/myshop'
+				url: '/pages/main/main'
 			});
 		}
 	}
@@ -110,7 +99,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	
 .login-box {
 	background: #ffffff;
 	min-height: 100vh;
@@ -136,7 +124,7 @@ export default {
 .password {
 	margin-top: #{64rpx - 24rpx};
 	margin-bottom: #{72rpx};
-} 
+}
 
 .apply-btn {
 	height: #{44rpx};
@@ -158,7 +146,7 @@ export default {
 }
 
 .login-bg view {
-	position: absolute; 
+	position: absolute;
 	left: #{200rpx};
 	bottom: #{0rpx};
 	width: #{0rpx};
@@ -238,7 +226,7 @@ export default {
 	font-size: #{28rpx};
 }
 
-.footer{
+.footer {
 	height: 133rpx;
 	width: 100%;
 	position: fixed;

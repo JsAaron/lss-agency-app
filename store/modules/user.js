@@ -1,7 +1,7 @@
 import user from '../../core/user.js';
+import $store from '../../store/index.js';
 
 const state = {
-	//FOTYhhQqpGfWzlOmQOFysTeWGJBwMTbH
 	accessToken: '',
 	info: null,
 	showLoginModal: false,
@@ -92,6 +92,7 @@ const actions = {
 		}).catch(e => {});
 	},
 	logout(context) {
+		$store.dispatch('mallConfig/actionClear');
 		context.commit('accessToken', null);
 		user.loginByToken(null);
 	},

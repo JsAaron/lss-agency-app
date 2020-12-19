@@ -13,13 +13,13 @@ export default {
 	created() {},
 	onLoad() {
 		const self = this;
-		const mch_data = uni.getStorageSync('MCH2019');
-		if (!mch_data) {
+		const token_data = uni.getStorageSync('LSSAGENCY_USER_ACCESS_TOKEN');
+		if (!token_data) {
 			uni.reLaunch({ url: '/pages/login/login' });
 			return;
 		}
 		uni.reLaunch({
-			url: '/pages/myshop/myshop'
+			url: '/pages/main/main'
 		});
 	}
 };

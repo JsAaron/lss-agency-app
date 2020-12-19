@@ -8,7 +8,7 @@ import event from './event.js';
 import $const from './const.js';
 import $store from '../store/index.js';
 
-const storageKey = 'LSS_AGENCY_USER_ACCESS_TOKEN';
+const storageKey = 'LSSAGENCY_USER_ACCESS_TOKEN';
 
 let userInfo = null;
 
@@ -26,7 +26,6 @@ export default {
 			if (options.cacheOnly) {
 				return resolve(accessToken);
 			}
-			setStorageSync(storageKey, "H4p54kWZBgt2fv6a1yavbZBalWTkttUN");
 			reject()
 		});
 	},
