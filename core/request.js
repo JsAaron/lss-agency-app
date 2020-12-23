@@ -25,11 +25,12 @@ const request = async function(args) {
 	if ($store.state.user && $store.state.user.accessToken) {
 		header['X-Access-Token'] = $store.state.user.accessToken;
 	}
+	// header['X-Access-Token'] = 'H4p54kWZBgt2fv6a1yavbZBalWTkttUN'
 
 	if ($store.state.user && $store.state.user.tempParentId !== 0) {
 		header['X-User-Id'] = $store.state.user.tempParentId + '';
 	}
-
+ 
 	//多商户Token
 	let obj = {};
 	args.url && args.url.replace(/([^=&]+)=([^&]*)/g, function(m, key, value) {

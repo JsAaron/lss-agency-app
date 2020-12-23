@@ -87,14 +87,6 @@
 						<view v-else>{{ mathnum(indexbelist.income_price_shopping / 100) }}元</view>
 					</view>
 				</view>
-				<!--  <view class="list-item">
-                    <view @click="toPayBe">
-                        <image src="/static/image/agency/agency-zfsy.png"></image>
-						<view>支付收益</view>
-						<view v-if="indexbelist.pay_price_face == null || indexbelist.pay_price_face == 0">0.00元</view>
-						<view v-else>{{mathnum(indexbelist.pay_price_face/100)}}元</view>
-                    </view>
-                </view> -->
 				<view class="list-item">
 					<view @click="toAdvertBe">
 						<image src="/static/image/agency/agency-ggsy.png"></image>
@@ -115,10 +107,10 @@
 					</view>
 				</view>
 				<view class="list-item">
-					<!-- 				<view @click="toInto">
+					<view @click="toInto">
 						<image src="/static/image/agency/agency-jj.png"></image>
 						<view>进件</view>
-					</view> -->
+					</view>
 				</view>
 			</view>
 
@@ -272,7 +264,13 @@ export default {
 			});
 		},
 		toInto() {
-			uni.navigateTo({ url: `/pages/agency/apply/apply` });
+			// uni.navigateTo({ url: `/pages/agency/apply/apply` });
+			if (this.indexlist) {
+				console.log(this.indexlist);
+				uni.navigateTo({
+					url: `/pages/agency/apply/applylist?agent_id=` + this.indexlist.id + '&agent_name=' + this.indexlist.name
+				});
+			}
 		},
 		//获取代理数据
 		getList() {

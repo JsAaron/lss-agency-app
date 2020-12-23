@@ -97,6 +97,13 @@
 				}
 			},
 			{
+				"path": "apply/applylist",
+				"style": {
+					"navigationBarTitleText": "进件列表",
+					"enablePullDownRefresh": true
+				}
+			},
+			{
 				"path": "apply_rules/apply_rules",
 				"style": {
 					"navigationBarTitleText": "协议"

@@ -53,9 +53,11 @@ export default {
 	data() {
 		return {
 			version:'',
+			// 17308497777
+			// 12345678
 			form: {
-				username: '17308497777',
-				password: '12345678'
+				username: '',
+				password: ''
 			}
 		};
 	},

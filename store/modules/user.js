@@ -6,6 +6,7 @@ const state = {
 	info: null,
 	showLoginModal: false,
 	tempParentId: 0,
+	applyApiUrl: 'https://api.facess.net'
 };
 
 const getters = {

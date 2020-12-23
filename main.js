@@ -28,6 +28,7 @@ import popupAd from './core/popupAd.js';
 import appImage from './components/basic-component/app-image/app-image.vue';
 import shareAppMessage from './core/shareAppMessage.js';
 import subscribe from './core/subscribe.js';
+import appWatchLogin from './components/page-component/app-watch-login/app-watch-login.vue';
 
 Vue.component('app-button', appButton);
 Vue.component('app-form-id', appFormId);
@@ -36,11 +37,12 @@ Vue.component('app-input', appInput);
 Vue.component('app-jump-button', appJumpButton);
 Vue.component('app-load-text', appLoadText);
 Vue.component('app-image', appImage);
+Vue.component('app-watch-login', appWatchLogin);
 
 Vue.use({
   install(Vue, options) {
     // 小程序端版本号
-    Vue.prototype.$appVersion = '1.5.1';
+    Vue.prototype.$appVersion = '1.5.0';
     // 数据池
     Vue.prototype.$store = store;
     // 平台

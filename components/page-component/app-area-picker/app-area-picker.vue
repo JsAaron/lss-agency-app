@@ -142,7 +142,7 @@ export default {
 
 		before(cb) {
 			const self = this;
-			let district = uni.getStorageSync('_DISTRICT');
+			let district = uni.getStorageSync('LSSMCH_DISTRICT');
 			// district = false;
 			if (district) {
 				cb(district);
@@ -151,7 +151,7 @@ export default {
 					url: self.$api.default.district
 				}).then(info => {
 					if (info.code === 0) {
-						uni.setStorageSync('_DISTRICT', info.data.list);
+						uni.setStorageSync('LSSMCH_DISTRICT', info.data.list);
 						cb(info.data.list);
 					}
 				});
@@ -160,12 +160,12 @@ export default {
 
 		init: function(list) {
 			const null_status = this.ids.length === 3 && this.ids[0] != 0;
-			const ids = null_status ? this.ids : [2, 3, 4];
+			const ids = null_status ? this.ids : [110000,110100, 110101];
 			// console.log('ids',ids)
-			const multiIndex = this.getIndex(list, ids);
+			let multiIndex = this.getIndex(list, ids);
 			// console.log('multiIndex',multiIndex)
 			if (multiIndex.length != 3) {
-				return;
+				multiIndex = [0,0,0]		
 			}
 
 			const multiArray = [list, list[multiIndex[0]].list, list[multiIndex[0]].list[multiIndex[1]].list];
@@ -232,15 +232,18 @@ export default {
 		setEvent: function(list, status = true) {
 			let data = {
 				province: {
-					id: list[0].id,
-					name: list[0].name
+					id: list[0].province_id,
+					name: list[0].name,
+					province_id: list[0].province_id,
 				},
 				city: {
-					id: list[1].id,
-					name: list[1].name
+					id: list[1].city_id,
+					name: list[1].name,
+					city_id: list[1].city_id,
 				},
 				district: {
-					id: list[2].id,
+					id: list[2].county_id,
+					county_id: list[2].county_id,
 					name: list[2].name
 				}
 			};

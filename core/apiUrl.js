@@ -10,9 +10,9 @@ const apiUrl = {
 		pay_buy_balance: `api/payment/pay-buy-balance`,
 		pay_buy_huodao: `api/payment/pay-buy-huodao`,
 	},
-	upload: {
-		file: `api/attachment/upload`
-	},
+  upload: {
+    file: `api/attachment/upload`
+  },
 	default: {
 		district: `api/default/district`,
 		goods_list: `api/default/goods-list`,
