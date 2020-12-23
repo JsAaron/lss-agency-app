@@ -159,6 +159,7 @@
 			</view>
 			<view class="closeBtn" @click="closeView">X</view>
 		</my-pop>
+		<view style="position: fixed;right: 20rpx;bottom: 30rpx;font-size: 14px;color: #999;">版本号:{{ version }}</view>
 	</app-layout>
 </template>
 
@@ -169,6 +170,7 @@ export default {
 	components: { myPop },
 	data() {
 		return {
+			version: '',
 			indexlist: [], //获取列表
 			name: null,
 			first: false,
@@ -306,6 +308,35 @@ export default {
 				.catch(response => {
 					that.$hideLoading();
 				});
+		},
+		detectionUpdate() {
+			// 第一个是名称标识,  platform 0-安卓 | 1-ios
+			uni.request({
+				url: `https://api.facess.net/api/app/update?name=lssagency&platform=0&versionNo=${this.$appVersion
+					.split('.')
+					.join('')}`,
+				success: rs => {
+					if (rs.data && rs.data.data) {
+						uni.showModal({
+							title: '版本更新',
+							content: '有新的版本发布，是否立即进行新版本下载安装？',
+							confirmText: '立即更新',
+							cancelText: '下次更新',
+							success: function(res) {
+								if (res.confirm) {
+									let data = rs.data.data;
+									let url = `/pages/update/update?url=${data.url}&content=${data.content}&size=${data.size}&version=${
+										data.versionNo
+									}`;
+									uni.navigateTo({ url });
+								} else if (res.cancel) {
+									console.log('稍后更新');
+								}
+							}
+						});
+					}
+				}
+			});
 		}
 	},
 
@@ -322,11 +353,14 @@ export default {
 		this.getBeList();
 	},
 	onShow() {
-		let that = this;
+		this.version = this.$appVersion;
+		let that = this; 
 		if (that.first) {
 			that.getList();
 			that.getBeList();
 		}
+		//自动更新
+		this.detectionUpdate();
 	}
 };
 </script>

@@ -34,6 +34,7 @@
 				</view>
 			</view> -->
 		</view>
+		<view style="position: fixed;right: 20rpx;bottom: 30rpx;font-size: 14px;color: #999;">版本号:{{ version }}</view>
 		<image class="footer" src="/static/image/footer.png"></image>
 	</app-layout>
 </template>
@@ -51,13 +52,16 @@ export default {
 	// },
 	data() {
 		return {
+			version:'',
 			form: {
 				username: '17308497777',
 				password: '12345678'
 			}
 		};
 	},
-
+	onLoad() {
+		this.version = this.$appVersion;
+	},
 	methods: {
 		login: function() {
 			const self = this;

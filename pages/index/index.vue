@@ -9,7 +9,7 @@ export default {
 	data() {
 		return {};
 	},
-	props: {},
+	props: {}, 
 	created() {},
 	onLoad() {
 		const self = this;
@@ -19,7 +19,7 @@ export default {
 			return;
 		}
 		uni.reLaunch({
-			url: '/pages/main/main'
+			url: '/pages/main/main' 
 		});
 	}
 };

@@ -1,20 +1,30 @@
 {
 	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationStyle": "custom"
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/update/update",
+			"style": {
+				"navigationBarTitleText": "软件更新",
+				"navigationBarBackgroundColor": "#1EB1FE",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/main/main",
+			"style": {
+				"navigationBarTitleText": "代理中心"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "脸刷刷代理登录"
+			}
 		}
-	}, {
-		"path": "pages/main/main",
-		"style": {
-			"navigationBarTitleText": "代理中心"
-		}
-	}, {
-		"path": "pages/login/login",
-		"style": {
-			"navigationBarTitleText": "脸刷刷代理登录"
-		}
-	}],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "",
