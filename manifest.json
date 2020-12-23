@@ -2,8 +2,8 @@
     "name" : "脸刷刷代理版",
     "appid" : "__UNI__03C0003",
     "description" : "脸刷刷代理版",
-    "versionName" : "1.0",
-    "versionCode" : 10,
+    "versionName" : "1.5.1",
+    "versionCode" : 151,
     "transformPx" : false,
     "uniStatistics" : {
         "enable" : false

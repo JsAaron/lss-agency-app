@@ -115,21 +115,25 @@
 					</view>
 				</view>
 				<view class="list-item">
-					<view @click="toInto">
+					<!-- 				<view @click="toInto">
 						<image src="/static/image/agency/agency-jj.png"></image>
 						<view>进件</view>
+					</view> -->
+				</view>
+			</view>
+
+			<!-- 设置 -->
+			<view class="list dir-left-wrap">
+				<view class="list-item">
+					<view @click="toPassword">
+						<image src="/static/image/agency/pwd.png"></image>
+						<view>修改密码</view>
 					</view>
 				</view>
 				<view class="list-item">
 					<view @click="toAccount">
 						<image src="/static/image/agency/account.png"></image>
 						<view>切换账号</view>
-					</view>
-				</view>
-				<view class="list-item">
-					<view @click="toPassword">
-						<image src="/static/image/agency/pwd.png"></image>
-						<view>修改密码</view>
 					</view>
 				</view>
 			</view>
@@ -354,7 +358,7 @@ export default {
 	},
 	onShow() {
 		this.version = this.$appVersion;
-		let that = this; 
+		let that = this;
 		if (that.first) {
 			that.getList();
 			that.getBeList();
