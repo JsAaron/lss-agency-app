@@ -1474,7 +1474,7 @@ export default {
 		 * @param {Object} e
 		 */
 		handleUserIdFrontUpload(e) {
-			console.log('正面',e);
+			console.log('正面', e);
 			if (e.imageList.length > 0) {
 				this.imgList.identityz = [e.imageList[0]];
 				this.imgList.identityimg.push(this.imgList.identityz);
@@ -1533,7 +1533,7 @@ export default {
 		 * @param {Object} e
 		 */
 		handleBandcardfrontUpload(e) {
-			console.log(11111,e);
+			console.log(11111, e);
 			if (e.imageList.length > 0) {
 				this.bank_card.settlement_cert_front_pic = e.imageList[0];
 				this.submitORC(4, 1, e.localpath, 'front');

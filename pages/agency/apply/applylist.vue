@@ -37,17 +37,18 @@
 					<view class="apply-success fixed" v-if="item.apply_status == 5">实名成功</view>
 					<view class="bottom-list">
 						<app-button
-							@click="goApply(index)"
-							v-if="item.apply_status != 1 && item.apply_status != 5"
 							height="80"
 							width="200"
 							font-size="32"
 							background="#ff4544"
 							color="#FFFFFF"
 							round
+							@click="goApply(index)"
+							v-if="item.apply_status != 1 && item.apply_status != 5"
 						>
 							编辑
 						</app-button>
+
 						<app-button
 							@click="previewViewImage(item.wx_real_name_url)"
 							height="80"
@@ -57,17 +58,17 @@
 							color="#FFFFFF"
 							round
 							v-if="item.apply_status == 5"
-						>
+						> 
 							支付认证
 						</app-button>
 						<app-button
-							@click="submitApply(index)"
 							height="80"
 							width="200"
 							font-size="32"
 							background="#ff4544"
 							color="#FFFFFF"
 							round
+							@click="submitApply(index)"
 							v-if="item.apply_status == 0 || item.apply_status == 2"
 						>
 							提交进件
@@ -84,7 +85,6 @@
 import { mapState } from 'vuex';
 export default {
 	name: 'mckh-apply',
-
 	data() {
 		return {
 			page: 1, //当前页
@@ -94,7 +94,6 @@ export default {
 			agent_name: '',
 			list: [],
 			panelTop: 0,
-
 			themeColor: '#00a6ff',
 			titleColor: '#666666'
 		};
@@ -109,9 +108,14 @@ export default {
 		this.agent_id = options.agent_id;
 		this.agent_name = options.agent_name;
 	},
-	onReady() {
+	onShow() {
 		this.page = 1;
 		this.getApplyList();
+	},
+	onPullDownRefresh() {
+		this.page = 1;
+		this.getApplyList();
+		uni.stopPullDownRefresh();
 	},
 	onReachBottom: function() {
 		const self = this;
@@ -148,7 +152,7 @@ export default {
 							},
 							method: 'POST',
 							success: res => {
-								console.log(res);
+								// console.log(res);
 								if (res.data.code == 0) {
 									uni.showModal({
 										title: '提示',
@@ -184,16 +188,15 @@ export default {
 		getApplyList: function() {
 			const self = this;
 			self.$showLoading();
-			uni.request({
+			return uni.request({
 				url: this.applyApiUrl + '/api/mch/apply/getMchApplyList',
 				data: {
 					agentId: this.agent_id,
 					pageNumber: this.page,
-					pageSize: 20
+					pageSize: 10
 				},
 				method: 'GET',
 				success: res => {
-					console.log(res);
 					if (res.data.code == 0) {
 						self.list = res.data.data.list;
 						self.total_page = res.data.data.totalPage;
