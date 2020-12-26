@@ -9,7 +9,7 @@ export default {
 	data() {
 		return {};
 	},
-	props: {}, 
+	props: {},
 	created() {},
 	onLoad() {
 		const self = this;
@@ -18,8 +18,21 @@ export default {
 			uni.reLaunch({ url: '/pages/login/login' });
 			return;
 		}
+
+		// 2天有效期
+		let lastLoginTime = uni.getStorageSync('LSSAGENCY_LOGIN_TIME');
+		if (lastLoginTime) {
+			const nowDate = new Date();
+			if (nowDate.getTime() - lastLoginTime <= 1 * 24 * 60 * 60 * 1000) {
+				uni.setStorageSync('LSSAGENCY_LOGIN_TIME', new Date().getTime());
+			} else {
+				uni.reLaunch({ url: '/pages/login/login' });
+				return;
+			}
+		}
+
 		uni.reLaunch({
-			url: '/pages/main/main' 
+			url: '/pages/main/main'
 		});
 	}
 };

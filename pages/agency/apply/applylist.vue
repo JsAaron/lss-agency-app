@@ -58,7 +58,7 @@
 							color="#FFFFFF"
 							round
 							v-if="item.apply_status == 5"
-						> 
+						>
 							支付认证
 						</app-button>
 						<app-button
@@ -109,12 +109,10 @@ export default {
 		this.agent_name = options.agent_name;
 	},
 	onShow() {
-		this.page = 1;
-		this.getApplyList();
+		this.refreshList();
 	},
 	onPullDownRefresh() {
-		this.page = 1;
-		this.getApplyList();
+		this.refreshList();
 		uni.stopPullDownRefresh();
 	},
 	onReachBottom: function() {
@@ -127,6 +125,10 @@ export default {
 		this.getApplyList();
 	},
 	methods: {
+		refreshList() {
+			this.page = 1;
+			this.getApplyList();
+		},
 		previewViewImage(url) {
 			uni.previewImage({
 				urls: [url]
@@ -158,6 +160,8 @@ export default {
 										title: '提示',
 										content: '提交成功，等待审核结果！'
 									});
+									// 刷新
+									self.refreshList();
 								} else {
 									uni.showModal({
 										title: '提示',

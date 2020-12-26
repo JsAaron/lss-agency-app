@@ -8,6 +8,7 @@ export default {
 			this.$appScene = options.scene;
 		}
 		let _this = this;
+		this.$store.dispatch('mallConfig/actionGetConfig');
 		wx.getSystemInfo({
 			success: function(response) {
 				_this.$store.dispatch('gConfig/setSystemInfo', response);

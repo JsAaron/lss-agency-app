@@ -78,9 +78,10 @@ export default {
 					}
 				})
 				.then(info => {
-					console.log(123, info);
 					self.$hideLoading();
 					if (info.code === 0) {
+						// 登录时间
+						uni.setStorageSync('LSSAGENCY_LOGIN_TIME', new Date().getTime())
 						uni.setStorageSync('LSSAGENCY_USER_ACCESS_TOKEN', info.data['token']);
 						self.loginSuccess(info.data);
 					} else {
@@ -93,7 +94,6 @@ export default {
 		},
 
 		async loginSuccess(data) {
-			await this.$store.dispatch('mallConfig/actionGetConfig');
 			uni.showToast({ title: '登陆成功' });
 			//跳转
 			uni.redirectTo({

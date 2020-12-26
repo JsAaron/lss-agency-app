@@ -93,6 +93,7 @@ const actions = {
 		}).catch(e => {});
 	},
 	logout(context) {
+		uni.removeStorageSync('LSSAGENCY_LOGIN_TIME')
 		$store.dispatch('mallConfig/actionClear');
 		context.commit('accessToken', null);
 		user.loginByToken(null);
