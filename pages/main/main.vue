@@ -244,7 +244,7 @@ export default {
 		toQrcode(type) {
 			uni.navigateTo({
 				url: `/pages/agency/qrcode/qrcode?type=${type}`
-			});
+			}); 
 			this.shareShow = false;
 		},
 		//功能跳转
@@ -255,7 +255,7 @@ export default {
 		},
 		toCash() {
 			uni.navigateTo({
-				url: '/pages/agency/cash/cash?money=' + this.indexlist.balance * 0.01
+				url: '/pages/agency/cash/cash?money=' + this.mathnum(this.indexlist.balance * 0.01)
 			});
 		},
 		toCashDetail() {
@@ -266,7 +266,6 @@ export default {
 		toInto() {
 			// uni.navigateTo({ url: `/pages/agency/apply/apply` });
 			if (this.indexlist) {
-				console.log(this.indexlist);
 				uni.navigateTo({
 					url: `/pages/agency/apply/applylist?agent_id=` + this.indexlist.id + '&agent_name=' + this.indexlist.name
 				});
