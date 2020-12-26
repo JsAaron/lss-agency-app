@@ -16,7 +16,8 @@
 		{
 			"path": "pages/main/main",
 			"style": {
-				"navigationBarTitleText": "代理中心"
+				"navigationBarTitleText": "代理中心",
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/login/login",

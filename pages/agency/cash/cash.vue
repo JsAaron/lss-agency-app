@@ -257,7 +257,7 @@ export default {
 						uni.showToast({
 							title: response.msg,
 							duration: 1000
-						});
+						}); 
 						setTimeout(() => {
 							uni.redirectTo({
 								url: '/pages/agency/ag-cash-detail/ag-cash-detail'

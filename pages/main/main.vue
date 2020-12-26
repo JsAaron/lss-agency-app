@@ -169,7 +169,6 @@ export default {
 			version: '',
 			indexlist: [], //获取列表
 			name: null,
-			first: false,
 			page_loading: true,
 			agent_parent_id: '',
 			shareShow: false,
@@ -183,6 +182,11 @@ export default {
 			custom_setting: state => state.mallConfig.share_setting_custom,
 			mall: state => state.mallConfig.mall
 		})
+	},
+	onPullDownRefresh() {
+		this.getList();
+		this.getBeList();
+		uni.stopPullDownRefresh();
 	},
 	methods: {
 		mathnum(num) {
@@ -244,7 +248,7 @@ export default {
 		toQrcode(type) {
 			uni.navigateTo({
 				url: `/pages/agency/qrcode/qrcode?type=${type}`
-			}); 
+			});
 			this.shareShow = false;
 		},
 		//功能跳转
@@ -350,16 +354,11 @@ export default {
 		if (options.agent_parent_id) {
 			this.agent_parent_id = options.agent_parent_id;
 		}
-		this.getList();
-		this.getBeList();
 	},
 	onShow() {
 		this.version = this.$appVersion;
-		let that = this;
-		if (that.first) {
-			that.getList();
-			that.getBeList();
-		}
+		this.getList();
+		this.getBeList();
 		//自动更新
 		this.detectionUpdate();
 	}
