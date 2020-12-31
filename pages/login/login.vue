@@ -15,7 +15,6 @@
 				<view class="dir-left-nowrap login-form cross-center">
 					<view class="box-grow-0 cross-center">密码</view>
 					<input
-						focus
 						placeholder="请输入密码(6-14位)"
 						placeholder-style="color:#bbbbbb"
 						type="password"
@@ -52,7 +51,7 @@ export default {
 	// },
 	data() {
 		return {
-			version:'',
+			version: '',
 			// 17308497777
 			// 12345678
 			form: {
@@ -81,7 +80,7 @@ export default {
 					self.$hideLoading();
 					if (info.code === 0) {
 						// 登录时间
-						uni.setStorageSync('LSSAGENCY_LOGIN_TIME', new Date().getTime())
+						uni.setStorageSync('LSSAGENCY_LOGIN_TIME', new Date().getTime());
 						uni.setStorageSync('LSSAGENCY_USER_ACCESS_TOKEN', info.data['token']);
 						self.loginSuccess(info.data);
 					} else {

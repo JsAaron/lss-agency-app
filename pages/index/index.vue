@@ -19,11 +19,11 @@ export default {
 			return;
 		}
 
-		// 2天有效期
+		// 1天有效期
 		let lastLoginTime = uni.getStorageSync('LSSAGENCY_LOGIN_TIME');
 		if (lastLoginTime) {
 			const nowDate = new Date();
-			if (nowDate.getTime() - lastLoginTime >= 2 * 24 * 60 * 60 * 1000) {
+			if (nowDate.getTime() - lastLoginTime >= 1 * 24 * 60 * 60 * 1000) {
 				uni.removeStorageSync('LSSAGENCY_LOGIN_TIME');
 				uni.reLaunch({ url: '/pages/login/login' });
 				return;
