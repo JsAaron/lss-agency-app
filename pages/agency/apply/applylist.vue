@@ -148,7 +148,7 @@ export default {
 
 	methods: {
 		onPageBack() {
-			uni.navigateTo({});
+			uni.navigateBack({})
 		},
 		previewViewImage(url) {
 			uni.previewImage({
