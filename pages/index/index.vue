@@ -23,9 +23,8 @@ export default {
 		let lastLoginTime = uni.getStorageSync('LSSAGENCY_LOGIN_TIME');
 		if (lastLoginTime) {
 			const nowDate = new Date();
-			if (nowDate.getTime() - lastLoginTime <= 1 * 24 * 60 * 60 * 1000) {
-				uni.setStorageSync('LSSAGENCY_LOGIN_TIME', new Date().getTime());
-			} else {
+			if (nowDate.getTime() - lastLoginTime >= 2 * 24 * 60 * 60 * 1000) {
+				uni.removeStorageSync('LSSAGENCY_LOGIN_TIME');
 				uni.reLaunch({ url: '/pages/login/login' });
 				return;
 			}

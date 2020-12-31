@@ -1,101 +1,236 @@
 <template>
-    <view>
-        <view 
-            :class="[shadow ? `main-between app-nav shadow` : 'main-between app-nav']"
-            :style="[
-                {
-                    'line-height': `${setHeight ? setHeight : 90}rpx`,
-                    'font-size': `${fontSize ? fontSize : 28}rpx`,
-                    'height': `${setHeight ? setHeight : 90}rpx`,
-                    'top': `${setTop ? setTop : 0}rpx`,
-                    'backgroundColor': `${background ? background : '#fff'}`,
-                }
-            ]"
-        >
-            <view @click="handleClick" v-for="(item) in tabList" :key="item.id" :data-id="item.id" class="box-grow-1 nav-item"
-            :style="[
-                {
-                    'borderBottom': `${border ? 1 : 0}rpx solid #e2e2e2`,
-                }
-            ]"
-            >
-                <text
-                    :class="[item.id == activeItem ? `active-text ${theme}-color` : '']"
-                    :style="[
-                        {
-                            'height': `${setHeight ? setHeight : 90}rpx`,
-                            'padding': `0 ${padding}rpx`,
-                        }
-                    ]"
-                >{{item.name}}</text>
-            </view>
-        </view>
-        <view
-            :style="[
-                {'height': `${placeHeight ? placeHeight : 90}rpx`}
-            ]"
-        >
-        </view>
-    </view>
+	<view class="uni-navbar">
+		<view
+			:class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }"
+			:style="{ 'background-color': backgroundColor }"
+			class="uni-navbar__content"
+		>
+			<app-status-bar v-if="statusBar" />
+			<view
+				:style="{ color: color, backgroundColor: backgroundColor }"
+				class="uni-navbar__header uni-navbar__content_view"
+			>
+				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
+					<view class="uni-navbar__content_view" v-if="leftIcon.length">
+						<app-icons :color="color" :type="leftIcon" size="24" />
+					</view>
+					<view
+						:class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }"
+						class="uni-navbar-btn-text uni-navbar__content_view"
+						v-if="leftText.length"
+					>
+						<text :style="{ color: color, fontSize: '14px' }">{{ leftText }}</text>
+					</view>
+					<slot name="left" />
+				</view>
+				<view class="uni-navbar__header-container uni-navbar__content_view">
+					<view class="uni-navbar__header-container-inner uni-navbar__content_view" v-if="title.length">
+						<text class="uni-nav-bar-text" :style="{ color: color }">{{ title }}</text>
+					</view>
+					<!-- 标题插槽 -->
+					<slot />
+				</view>
+				<view
+					:class="title.length ? 'uni-navbar__header-btns-right' : ''"
+					@tap="onClickRight"
+					class="uni-navbar__header-btns uni-navbar__content_view"
+				>
+					<view class="uni-navbar__content_view" v-if="rightIcon.length">
+						<app-icons :color="color" :type="rightIcon" size="24" />
+					</view>
+					<!-- 优先显示图标 -->
+					<view class="uni-navbar-btn-text uni-navbar__content_view" v-if="rightText.length && !rightIcon.length">
+						<text class="uni-nav-bar-right-text">{{ rightText }}</text>
+					</view>
+					<slot name="right" />
+				</view>
+			</view>
+		</view>
+		<view class="uni-navbar__placeholder" v-if="fixed">
+			<app-status-bar v-if="statusBar" />
+			<view class="uni-navbar__placeholder-view" />
+		</view>
+	</view>
 </template>
 
 <script>
+import appStatusBar from '../app-status-bar/app-status-bar.vue';
+import appIcons from '../app-icons/app-icons.vue';
 
-    export default {
-        name: 'app-tab-nav',
-        props: {
-            background: String,
-            setTop: String,
-            padding: {
-                default: '45',
-                type: String,
-            },
-            setHeight: String,
-            placeHeight: String,
-            fontSize: String,
-            theme: {
-                default: 'classic-red',
-                type: String,
-            },
-            border: {
-                default: true,
-                type: Boolean,
-            },
-            shadow: {
-                default: true,
-                type: Boolean,
-            },
-            activeItem: String,
-            tabList: Array
-        },
-        methods: {
-            handleClick(e) {
-                this.$emit('click', e);
-            }
-        },
-       
-    }
+export default {
+	name: 'UniNavBar',
+	components: {
+		'app-status-bar': appStatusBar,
+		'app-icons': appIcons
+	},
+	props: {
+		title: {
+			type: String,
+			default: ''
+		},
+		leftText: {
+			type: String,
+			default: ''
+		},
+		rightText: {
+			type: String,
+			default: ''
+		},
+		leftIcon: {
+			type: String,
+			default: ''
+		},
+		rightIcon: {
+			type: String,
+			default: ''
+		},
+		fixed: {
+			type: [Boolean, String],
+			default: false
+		},
+		color: {
+			type: String,
+			default: '#000000'
+		},
+		backgroundColor: {
+			type: String,
+			default: '#FFFFFF'
+		},
+		statusBar: {
+			type: [Boolean, String],
+			default: false
+		},
+		shadow: {
+			type: [String, Boolean],
+			default: false
+		},
+		border: {
+			type: [String, Boolean],
+			default: true
+		}
+	},
+	mounted() {
+		if (uni.report && this.title !== '') {
+			uni.report('title', this.title);
+		}
+	},
+	methods: {
+		onClickLeft() {
+			this.$emit('clickLeft');
+		},
+		onClickRight() {
+			this.$emit('clickRight');
+		}
+	}
+};
 </script>
 
-<style scoped lang="scss">
-    .app-nav {
-        color: #353535;
-        width: 100%;
-        position: fixed;
-        left: 0;
-        background-color: #fff;
-        z-index: 10;
-        .nav-item {
-            text-align: center;
-            text {
-                display: inline-block;
-            }
-        }
-        .active-text {
-            border-bottom: #{4rpx} solid;
-        }
-    }
-    .app-nav.shadow {
-        box-shadow: 0 #{2rpx} #{10rpx} rgba(0, 0, 0, 0.06);
-    }
+<style lang="scss" scoped>
+$nav-height: 44px;
+.uni-nav-bar-text {
+	/* #ifdef APP-PLUS */
+	font-size: 34rpx;
+	/* #endif */
+	/* #ifndef APP-PLUS */
+	font-size: $uni-font-size-lg;
+	/* #endif */
+}
+.uni-nav-bar-right-text {
+	font-size: $uni-font-size-base;
+}
+
+.uni-navbar {
+	width: 750rpx;
+}
+
+.uni-navbar__content {
+	position: relative;
+	width: 750rpx;
+	background-color: $uni-bg-color;
+	overflow: hidden;
+}
+
+.uni-navbar__content_view {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	align-items: center;
+	flex-direction: row;
+	// background-color: #FFFFFF;
+}
+
+.uni-navbar__header {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: row;
+	width: 750rpx;
+	height: $nav-height;
+	line-height: $nav-height;
+	font-size: 16px;
+	// background-color: #ffffff;
+}
+
+.uni-navbar__header-btns {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-wrap: nowrap;
+	width: 120rpx;
+	padding: 0 6px;
+	justify-content: center;
+	align-items: center;
+}
+
+.uni-navbar__header-btns-left {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	width: 150rpx;
+	justify-content: flex-start;
+}
+
+.uni-navbar__header-btns-right {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	width: 150rpx;
+	padding-right: 30rpx;
+	justify-content: flex-end;
+}
+
+.uni-navbar__header-container {
+	flex: 1;
+}
+
+.uni-navbar__header-container-inner {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	font-size: $uni-font-size-base;
+}
+
+.uni-navbar__placeholder-view {
+	height: $nav-height;
+}
+
+.uni-navbar--fixed {
+	position: fixed;
+	z-index: 998;
+}
+
+.uni-navbar--shadow {
+	/* #ifndef APP-NVUE */
+	box-shadow: 0 1px 6px #ccc;
+	/* #endif */
+}
+
+.uni-navbar--border {
+	border-bottom-width: 1rpx;
+	border-bottom-style: solid;
+	border-bottom-color: $uni-border-color;
+}
 </style>

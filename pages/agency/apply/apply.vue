@@ -1706,7 +1706,7 @@ export default {
 			console.log(this.bank_card.selectBranchBank);
 		},
 
-		//FUNCTION
+		//FUNCTION 
 		getBankList: function() {
 			const self = this;
 			self.$showLoading();

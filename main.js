@@ -29,7 +29,11 @@ import appImage from './components/basic-component/app-image/app-image.vue';
 import shareAppMessage from './core/shareAppMessage.js';
 import subscribe from './core/subscribe.js';
 import appWatchLogin from './components/page-component/app-watch-login/app-watch-login.vue';
+import appNavBar from "./components/basic-component/app-tab-nav/app-tab-nav.vue"
+import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
 
+Vue.component('app-mescroll-body', MescrollBody)
+Vue.component('app-nav-bar', appNavBar);
 Vue.component('app-button', appButton);
 Vue.component('app-form-id', appFormId);
 Vue.component('app-layout', appLayout);
@@ -42,7 +46,7 @@ Vue.component('app-watch-login', appWatchLogin);
 Vue.use({
   install(Vue, options) {
     // 小程序端版本号
-    Vue.prototype.$appVersion = '1.5.3';
+    Vue.prototype.$appVersion = '1.5.4';
     // 数据池
     Vue.prototype.$store = store;
     // 平台

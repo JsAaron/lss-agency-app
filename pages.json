@@ -94,14 +94,13 @@
 			{
 				"path": "apply/apply",
 				"style": {
-					"navigationBarTitleText": ""
+					"navigationBarTitleText": "进件"
 				}
 			},
 			{
 				"path": "apply/applylist",
 				"style": {
-					"navigationBarTitleText": "进件列表",
-					"enablePullDownRefresh": true
+					"navigationStyle": "custom"
 				}
 			},
 			{

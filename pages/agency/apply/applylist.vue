@@ -1,92 +1,120 @@
 <template>
 	<app-layout>
-		<view class="list">
-			<view class="top-add">
-				<app-button
-					@click="createApply"
-					margin="30"
-					height="80"
-					width="500"
-					font-size="32"
-					background="#ff4544"
-					color="#FFFFFF"
-					round
-				>
-					新增商户
-				</app-button>
-			</view>
-			<!-- 筛选内容 -->
-			<view class="no-content" v-if="!list.length">暂无记录</view>
-			<view v-else class="account-list">
-				<view class="account-list-item" v-for="(item, index) in list" :key="index">
-					<view class="shopname">{{ item.name }}</view>
-					<view class="user-info">
-						<view>{{ item.realname }}</view>
-						<view class="user-info-mobile">{{ item.mobile }}</view>
-					</view>
-					<view class="user-info">提交时间：{{ item.updated_time }}</view>
-					<view class="address">{{ item.address }}</view>
-					<view v-if="item.apply_status == 2" class="apply-fail">驳回原因：{{ item.reject_reason }}</view>
-					<view v-if="item.apply_status == 4" class="apply-fail">实名失败原因：{{ item.wx_real_name_url }}</view>
+		<app-nav-bar
+			:fixed="true"
+			:status-bar="true"
+			:shadow="false"
+			:border="false"
+			left-icon="arrowleft"
+			title="进件列表"
+			left-text="返回"
+			right-text="新增进件"
+			@clickLeft="onPageBack"
+			@clickRight="createApply"
+		></app-nav-bar>
 
-					<view class="no-apply fixed" v-if="item.apply_status == 0">未申请进件</view>
-					<view class="apply-success fixed" v-if="item.apply_status == 1">进件成功</view>
-					<view class="apply-fail fixed" v-if="item.apply_status == 2">进件驳回</view>
-					<view class="apply-fail fixed" v-if="item.apply_status == 3">实名中</view>
-					<view class="apply-fail fixed" v-if="item.apply_status == 4">实名失败</view>
-					<view class="apply-success fixed" v-if="item.apply_status == 5">实名成功</view>
-					<view class="bottom-list">
-						<app-button
-							height="80"
-							width="200"
-							font-size="32"
-							background="#ff4544"
-							color="#FFFFFF"
-							round
-							@click="goApply(index)"
-							v-if="item.apply_status != 1 && item.apply_status != 5"
-						>
-							编辑
-						</app-button>
+		<app-mescroll-body
+			ref="mescrollRef"
+			@init="mescrollInit"
+			:down="downOption"
+			:up="upOption"
+			@down="downCallback"
+			@up="upCallback"
+		>
+			<view class="list">
+				<!-- 筛选内容 -->
+				<view class="no-content" v-if="!list.length"></view>
+				<view v-else class="account-list">
+					<view class="account-list-item" v-for="(item, index) in list" :key="index">
+						<view class="shopname">{{ item.name }}</view>
+						<view class="user-info">
+							<view>{{ item.realname }}</view>
+							<view class="user-info-mobile">{{ item.mobile }}</view>
+						</view>
+						<view class="user-info">提交时间：{{ item.updated_time }}</view>
+						<view class="address">{{ item.address }}</view>
+						<view v-if="item.apply_status == 2" class="apply-fail">驳回原因：{{ item.reject_reason }}</view>
+						<view v-if="item.apply_status == 4" class="apply-fail">实名失败原因：{{ item.wx_real_name_url }}</view>
 
-						<app-button
-							@click="previewViewImage(item.wx_real_name_url)"
-							height="80"
-							width="300"
-							font-size="32"
-							background="#ff4544"
-							color="#FFFFFF"
-							round
-							v-if="item.apply_status == 5"
-						>
-							支付认证
-						</app-button>
-						<app-button
-							height="80"
-							width="200"
-							font-size="32"
-							background="#ff4544"
-							color="#FFFFFF"
-							round
-							@click="submitApply(index)"
-							v-if="item.apply_status == 0 || item.apply_status == 2"
-						>
-							提交进件
-						</app-button>
+						<view class="no-apply fixed" v-if="item.apply_status == 0">未申请进件</view>
+						<view class="apply-success fixed" v-if="item.apply_status == 1">进件成功</view>
+						<view class="apply-fail fixed" v-if="item.apply_status == 2">进件驳回</view>
+						<view class="apply-fail fixed" v-if="item.apply_status == 3">实名中</view>
+						<view class="apply-fail fixed" v-if="item.apply_status == 4">实名失败</view>
+						<view class="apply-success fixed" v-if="item.apply_status == 5">实名成功</view>
+						<view class="bottom-list">
+							<app-button
+								height="80"
+								width="200"
+								font-size="32"
+								background="#ff4544"
+								color="#FFFFFF"
+								round
+								@click="goApply(index)"
+								v-if="item.apply_status != 1 && item.apply_status != 5"
+							>
+								编辑
+							</app-button>
+
+							<app-button
+								@click="previewViewImage(item.wx_real_name_url)"
+								height="80"
+								width="300"
+								font-size="32"
+								background="#ff4544"
+								color="#FFFFFF"
+								round
+								v-if="item.apply_status == 5"
+							>
+								支付认证
+							</app-button>
+							<app-button
+								height="80"
+								width="200"
+								font-size="32"
+								background="#ff4544"
+								color="#FFFFFF"
+								round
+								@click="submitApply(index)"
+								v-if="item.apply_status == 0 || item.apply_status == 2"
+							>
+								提交进件
+							</app-button>
+						</view>
 					</view>
 				</view>
+				<view class="tm-h"></view>
 			</view>
-			<view class="tm-h"></view>
-		</view>
+		</app-mescroll-body>
 	</app-layout>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import MescrollMixin from '@/components/mescroll-uni/mescroll-mixins.js';
+
 export default {
+	mixins: [MescrollMixin],
 	name: 'mckh-apply',
 	data() {
 		return {
+			// ===========
+			downOption: {
+				textLoading: '数据更新中 ...'
+			},
+			upOption: {
+				page: {
+					num: 0,
+					size: 15,
+					time: null
+				},
+				noMoreSize: 3,
+				empty: {
+					tip: '~ 搜索无结果 ~'
+				},
+				textNoMore: '~ 没有更多数据 ~'
+			},
+			// ===========
 			page: 1, //当前页
 			total_page: 1,
 			load: false,
@@ -104,30 +132,23 @@ export default {
 			applyApiUrl: state => state.user.applyApiUrl
 		})
 	},
-	onLoad: function(options) {
+	onLoad(options) {
+		this.isFirst = true;
 		this.agent_id = options.agent_id;
 		this.agent_name = options.agent_name;
 	},
+
 	onShow() {
-		this.refreshList();
-	},
-	onPullDownRefresh() {
-		this.refreshList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		const self = this;
-		if (this.page < this.total_page || self.load) {
+		if (this.isFirst) {
+			this.isFirst = false;
 			return;
 		}
-		self.load = true;
-		let page = self.page + 1;
-		this.getApplyList();
+		this.mescroll.resetUpScroll();
 	},
+
 	methods: {
-		refreshList() {
-			this.page = 1;
-			this.getApplyList();
+		onPageBack() {
+			uni.navigateTo({});
 		},
 		previewViewImage(url) {
 			uni.previewImage({
@@ -161,7 +182,7 @@ export default {
 										content: '提交成功，等待审核结果！'
 									});
 									// 刷新
-									self.refreshList();
+									self.mescroll.resetUpScroll();
 								} else {
 									uni.showModal({
 										title: '提示',
@@ -178,9 +199,11 @@ export default {
 				}
 			});
 		},
+
 		createApply() {
 			uni.navigateTo({ url: '/pages/agency/apply/apply?agent_id=' + this.agent_id + '&agent_name=' + this.agent_name });
 		},
+
 		goApply(index) {
 			let item = this.list[index];
 			uni.navigateTo({
@@ -189,27 +212,29 @@ export default {
 					encodeURIComponent(JSON.stringify(item))
 			});
 		},
-		getApplyList: function() {
+
+		downCallback() {
+			this.mescroll.resetUpScroll();
+		},
+
+		upCallback(page) {
 			const self = this;
-			self.$showLoading();
 			return uni.request({
 				url: this.applyApiUrl + '/api/mch/apply/getMchApplyList',
 				data: {
 					agentId: this.agent_id,
-					pageNumber: this.page,
-					pageSize: 10
+					pageNumber: page.num,
+					pageSize: page.size
 				},
 				method: 'GET',
-				success: res => {
-					if (res.data.code == 0) {
-						self.list = res.data.data.list;
-						self.total_page = res.data.data.totalPage;
+				success: async res => {
+					if (page.num == 1) {
+						this.list = [];
 					}
+					this.list = this.list.concat(res.data.data.list);
+					this.mescroll.endByPage(res.data.data.list.length, res.data.data.totalPage);
 				},
-				complete: () => {
-					self.load = false;
-					self.$hideLoading();
-				}
+				complete: () => {}
 			});
 		}
 	}
