@@ -7,7 +7,9 @@ import siteInfo from './siteinfo.js';
 import request from './core/request.js';
 import user from './core/user.js';
 import Api from './core/appOnLaunch.js';
-import { platform } from './core/config.js';
+import {
+	platform
+} from './core/config.js';
 import mallConfig from './core/mallConfig.js';
 import * as cache from './core/cache.js';
 import appButton from './components/basic-component/app-button/app-button.vue';
@@ -44,42 +46,42 @@ Vue.component('app-image', appImage);
 Vue.component('app-watch-login', appWatchLogin);
 
 Vue.use({
-  install(Vue, options) {
-    // 小程序端版本号
-    Vue.prototype.$appVersion = '1.5.5';
-    // 数据池
-    Vue.prototype.$store = store;
-    // 平台
-    Vue.prototype.$platform = platform; 
-    Vue.prototype.$siteInfo = siteInfo;
-    // 接口 路径
-    Vue.prototype.$api = Api;
-    // 请求
-    Vue.prototype.$request = request;
-    // 缓存
-    Vue.prototype.$storage = cache;
-    // 用户组件
-    Vue.prototype.$user = user;
-    // 商城配置
-    Vue.prototype.$mallConfig = mallConfig;
-    // 工具函数
-    Vue.prototype.$utils = utils;
-    // 常量
-    Vue.prototype.$const = $const;
-    // 事件
-    Vue.prototype.$event = event;
-    // loading
-    Vue.prototype.$showLoading = showLoading;
-    Vue.prototype.$hideLoading = hideLoading;
-    // 平台差异性
-    Vue.prototype.$platDiff = platDiff;
-    Vue.prototype.$lazyLoadingData = lazyLoadingData;
-    Vue.prototype.$jump = jump;
-    Vue.prototype.$popupAd = popupAd;
-    Vue.prototype.$shareAppMessage = shareAppMessage;
-    Vue.prototype.$subscribe = subscribe;
-    Vue.prototype.$appScene = 1001;
-  },
+	install(Vue, options) {
+		// 小程序端版本号
+		Vue.prototype.$appVersion = '1.5.5';
+		// 数据池
+		Vue.prototype.$store = store;
+		// 平台
+		Vue.prototype.$platform = platform;
+		Vue.prototype.$siteInfo = siteInfo;
+		// 接口 路径
+		Vue.prototype.$api = Api;
+		// 请求
+		Vue.prototype.$request = request;
+		// 缓存
+		Vue.prototype.$storage = cache;
+		// 用户组件
+		Vue.prototype.$user = user;
+		// 商城配置
+		Vue.prototype.$mallConfig = mallConfig;
+		// 工具函数
+		Vue.prototype.$utils = utils;
+		// 常量
+		Vue.prototype.$const = $const;
+		// 事件
+		Vue.prototype.$event = event;
+		// loading
+		Vue.prototype.$showLoading = showLoading;
+		Vue.prototype.$hideLoading = hideLoading;
+		// 平台差异性
+		Vue.prototype.$platDiff = platDiff;
+		Vue.prototype.$lazyLoadingData = lazyLoadingData;
+		Vue.prototype.$jump = jump;
+		Vue.prototype.$popupAd = popupAd;
+		Vue.prototype.$shareAppMessage = shareAppMessage;
+		Vue.prototype.$subscribe = subscribe;
+		Vue.prototype.$appScene = 1001;
+	},
 });
 
 Vue.config.productionTip = false;
@@ -87,8 +89,8 @@ Vue.config.productionTip = false;
 App.mpType = 'app';
 
 const app = new Vue({
-  store,
-  ...App
+	store,
+	...App
 });
 
 app.$mount();

@@ -54,7 +54,7 @@ export default {
 		return {
 			currentIsLatest: '',
 			packgeSize: '15M',
-			version: 111, // 主标题显示版本号
+			version: '', // 主标题显示版本号
 			Mtip: '更新新版本', // 小提示标语
 			updateInfo: '无', // 更新摘要
 			percent: 0,
@@ -67,7 +67,7 @@ export default {
 		if (options.size && options.size != 'undefined') {
 			this.packgeSize = options.size;
 		}
-		if (options.version && options.size != 'undefined') {
+		if (options.version) {
 			this.version = options.version;
 		}
 	},
@@ -239,7 +239,8 @@ export default {
 }
 .minorContent {
 	width: 650upx;
-	padding: 100rpx 50upx;
+	padding: 100rpx 0;
+	margin:  0 auto;
 }
 .process {
 	margin-top: 200upx;
