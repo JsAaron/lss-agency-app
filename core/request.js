@@ -17,7 +17,7 @@ const request = async function(args) {
 		'X-Form-Id-List': JSON.stringify(popAll()),
 		'X-Requested-With': (args.header && args.header['X-Requested-With']) ? args.header['X-Requested-With'] : 'XMLHttpRequest',
 		'X-App-Version': Vue.prototype.$appVersion,
-		'content-type': 'application/x-www-form-urlencoded'
+		'content-type': args.type || 'application/x-www-form-urlencoded'
 	};
 
 	await $store.dispatch('user/loadAccessTokenFormCache');
@@ -25,19 +25,17 @@ const request = async function(args) {
 	if ($store.state.user && $store.state.user.accessToken) {
 		header['X-Access-Token'] = $store.state.user.accessToken;
 	}
-	// header['X-Access-Token'] = 'H4p54kWZBgt2fv6a1yavbZBalWTkttUN'
-
 	if ($store.state.user && $store.state.user.tempParentId !== 0) {
 		header['X-User-Id'] = $store.state.user.tempParentId + '';
 	}
- 
+
 	//多商户Token
 	let obj = {};
 	args.url && args.url.replace(/([^=&]+)=([^&]*)/g, function(m, key, value) {
 		obj[decodeURIComponent(key)] = decodeURIComponent(value);
 	});
 	if (objectValues(apiUrl.mch).indexOf(obj.r) !== -1) {
-		const mch_storage = uni.getStorageSync('MCH2019');
+		const mch_storage = uni.getStorageSync('LSSMCH_MCH2019');
 		header['Mch-Access-Token'] = mch_storage.token;
 	}
 
@@ -50,12 +48,12 @@ const request = async function(args) {
 	});
 
 	if (error) {
-		let msg = {
-			code: 400,
-			msg: error.errMsg,
-			data: error,
-		};
-		alertError(msg);
+		// let msg = {
+		// 	code: 400,
+		// 	msg: error.errMsg,
+		// 	data: error,
+		// };
+		// alertError(msg);
 		return Promise.reject(msg);
 	} else {
 		return distinguishStatusCode(response);
@@ -119,11 +117,11 @@ const distinguishDataCode = function(response) {
 		} = response.data;
 		// console.log(555555,response.data)
 		if (code >= 400) {
-			alertError({
-				code: code,
-				msg: msg,
-				data: response.data.error || (response.data.data || msg),
-			});
+			// alertError({
+			// 	code: code,
+			// 	msg: msg,
+			// 	data: response.data.error || (response.data.data || msg),
+			// });
 			return Promise.reject(msg);
 		} else if (code === -1) {
 			$store.dispatch('user/logout');
@@ -295,7 +293,7 @@ const distinguishStatusCode = function(response) {
 		default:
 			break;
 	}
-	alertError(msg);
+	// alertError(msg);
 	return Promise.reject(msg);
 };
 

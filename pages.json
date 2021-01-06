@@ -24,6 +24,12 @@
 			"style": {
 				"navigationBarTitleText": "脸刷刷代理登录"
 			}
+		},
+		{ 
+			"path": "pages/login/reset",
+			"style": {
+				"navigationBarTitleText": "重置登录"
+			}
 		}
 	],
 	"globalStyle": {

@@ -25,6 +25,9 @@
 			<view @click="login">
 				<view class="main-center cross-center login-dl"><view class="main-center cross-center">登录</view></view>
 			</view>
+			<view style="margin-top: 100rpx;float: right;margin-right: 80rpx;">
+				<navigator url="/pages/login/reset" open-type="navigate">重置密码</navigator>
+			</view>
 			<!-- 			<view class="dir-top-nowrap main-center cross-center">
 				<view class="spacing main-center cross-center">
 					<view class="line"></view>

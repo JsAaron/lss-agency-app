@@ -123,9 +123,15 @@
 					</view>
 				</view>
 				<view class="list-item">
+					<view @click="toResetPassword">
+						<image src="/static/image/agency/reset.png"></image>
+						<view>重置密码</view>
+					</view>
+				</view>
+				<view class="list-item">
 					<view @click="toAccount">
 						<image src="/static/image/agency/account.png"></image>
-						<view>切换账号</view>
+						<view>退出登录</view>
 					</view>
 				</view>
 			</view>
@@ -197,8 +203,8 @@ export default {
 		},
 		toAccount() {
 			uni.showModal({
-				title: '确定切换用户?',
-				success: res => {
+				title: '确定退出?',
+				success: res => { 
 					if (res.confirm) {
 						this.$store.dispatch('user/logout');
 						uni.redirectTo({ url: `/pages/login/login` });
@@ -211,6 +217,11 @@ export default {
 		toPassword() {
 			uni.navigateTo({
 				url: '/pages/agency/password/password'
+			});
+		},
+		toResetPassword(){
+			uni.navigateTo({
+				url: '/pages/login/reset'
 			});
 		},
 		// 菜单跳转
